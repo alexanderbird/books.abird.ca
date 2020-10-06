@@ -1,0 +1,17 @@
+doctype html
+head
+  title Bird Book Archive
+table
+  thead
+    tr
+      th(scope='col') Title
+      th(scope='col') Author
+      th(scope='col') Notes
+
+  tbody
+    each b in books
+      tr
+        td= b.Title
+        td= b.Author
+        td= b.Notes
+
