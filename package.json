@@ -4,6 +4,7 @@
   "description": "An inventory website for books that are in our deep storage. ",
   "main": "index.js",
   "scripts": {
+    "build": "echo noop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
