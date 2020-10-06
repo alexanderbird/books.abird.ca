@@ -1,0 +1,19 @@
+{
+  "name": "books.abird.ca",
+  "version": "1.0.0",
+  "description": "An inventory website for books that are in our deep storage. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanderbird/books.abird.ca.git"
+  },
+  "author": "Alexander Bird",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/alexanderbird/books.abird.ca/issues"
+  },
+  "homepage": "https://github.com/alexanderbird/books.abird.ca#readme"
+}
