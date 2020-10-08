@@ -8,6 +8,7 @@
     "build:clean": "rimraf build",
     "build:mkdir": "mkdir -p build",
     "build:data": "csvtojson data/books.csv | jq '{ books: . }' > build/books.json",
+    "build:thumbnails": "cat build/books.json | jq -r '.books[] | select(.ISBN != \"\") | .ISBN'",
     "build:html": "pug src/index.pug --out build -O ./build/books.json",
     "test": "html-validate build/index.html"
   },
