@@ -4,8 +4,9 @@
   "description": "An inventory website for books that are in our deep storage. ",
   "main": "index.js",
   "scripts": {
+    "cleanbuild": "run-s clean build",
+    "clean": "rimraf build && mkdir -p build",
     "build": "run-s build:* test",
-    "build:clean": "rimraf build",
     "build:mkdir": "mkdir -p build",
     "build:data": "csvtojson data/books.csv | jq '{ books: . }' > build/books.json",
     "build:thumbnails": "cat build/books.json | jq -r '.books[] | select(.ISBN != \"\") | .ISBN' | xargs -n 1 ./download_thumbnail.sh",

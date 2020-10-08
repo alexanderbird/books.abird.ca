@@ -14,6 +14,13 @@ isbn=$1
   exit 1
 }
 
+file_path="./build/$isbn"
+
+[[ -f "$file_path" ]] && {
+  echo "thumbnail already exists at $file_path, doing nothing"
+  exit 0
+}
+
 api="https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn&key=$GOOGLE_BOOKS_API_KEY"
 
 thumbnail_url=$(curl "$api" | jq -r ".items[0].volumeInfo.imageLinks.smallThumbnail")
@@ -23,6 +30,6 @@ thumbnail_url=$(curl "$api" | jq -r ".items[0].volumeInfo.imageLinks.smallThumbn
   exit 1
 }
 
-curl $thumbnail_url > ./build/$isbn
+curl $thumbnail_url > "$file_path"
 
-echo "Saved thumbnail to ./build/$isbn"
+echo "Saved thumbnail to $file_path"
