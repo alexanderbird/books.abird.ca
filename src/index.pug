@@ -4,6 +4,7 @@ head
 table
   thead
     tr
+      th(scope='col') Thumbnail
       th(scope='col') Title
       th(scope='col') Author
       th(scope='col') Notes
@@ -11,6 +12,9 @@ table
   tbody
     each b in books
       tr
+        td
+          if b.ISBN
+            img(src=b.ISBN, alt="Thumbnail for " + b.Title)
         td= b.Title
         td= b.Author
         td= b.Notes
