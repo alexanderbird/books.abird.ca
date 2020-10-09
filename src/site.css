@@ -1,0 +1,38 @@
+.book-list {
+}
+
+.book {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    'thumbnail title'
+    'thumbnail author'
+    'thumbnail notes'
+    'thumbnail .';
+
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.book__thumbnail {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  grid-area: thumbnail;
+  display: flex;
+}
+
+.book__title {
+  gird-area: title;
+}
+
+.book__author {
+  grid-area: author;
+}
+
+.book__notes {
+  grid-area: notes;
+  font-style: italic;
+}

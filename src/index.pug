@@ -1,21 +1,13 @@
 doctype html
 head
   title Bird Book Archive
-table
-  thead
-    tr
-      th(scope='col') Thumbnail
-      th(scope='col') Title
-      th(scope='col') Author
-      th(scope='col') Notes
-
-  tbody
-    each b in books
-      tr
-        td
-          if b.ISBN
-            img(src=b.ISBN, alt="Thumbnail for " + b.Title)
-        td= b.Title
-        td= b.Author
-        td= b.Notes
-
+  link(rel='stylesheet', href='site.css')
+div.book-list
+  each b in books
+    div.book
+      div.book__thumbnail
+        if b.ISBN
+          img(src=b.ISBN, alt="Thumbnail for " + b.Title)
+      h3.book__title= b.Title
+      div.book__author= b.Author
+      div.book__notes= b.Notes
