@@ -21,7 +21,7 @@ file_path="./build/$isbn"
   exit 0
 }
 
-api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&key=$GOOGLE_BOOKS_API_KEY"
+api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&orderBy=relevance&key=$GOOGLE_BOOKS_API_KEY"
 
 search_results="$(curl "$api")"
 
@@ -35,5 +35,7 @@ thumbnail_url=$(echo "$search_results" | tr '\r\n' ' ' | jq -r ".items[0].volume
 }
 
 curl $thumbnail_url > "$file_path"
+
+convert "$file_path" -resize x192 "$file_path"
 
 echo "Saved thumbnail to $file_path"
