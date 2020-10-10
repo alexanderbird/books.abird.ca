@@ -1,6 +1,8 @@
 doctype html
 head
   title Bird Book Archive
+  link(rel='icon' href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>')
+
   meta(name='viewport' content='width=device-width, initial-scale=1')
   meta(charset='UTF-8')
   link(rel='stylesheet', href='site.css')
@@ -19,6 +21,7 @@ div.book-list
       h3.book__title= book.Title
       div.book__author= book.Author
       div.book__notes= book.Notes
+script(src='section_filters.js')
 
 //- Generate CSS with a selector for each category filter:
 //- when a category is selected, hide all the books that aren't in the category

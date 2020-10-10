@@ -11,9 +11,14 @@
     "build:data": "csvtojson data/books.csv | jq \"$(cat data/books_schema.jq)\" > build/books.json",
     "build:thumbnail_overrides": "cp data/thumbnails/* build",
     "build:thumbnails": "cat build/books.json | jq -r '.books[] | select(.ISBN != \"\") | .ISBN' | xargs -n 1 ./download_thumbnail.sh",
-    "build:css": "cp src/*.css build",
+    "build:assets": "cp src/*.{css,js} build",
     "build:html": "pug src/index.pug --out build -O ./build/books.json",
-    "test": "html-validate build/index.html"
+    "test": "html-validate build/index.html",
+    "start": "http-server build",
+    "dev": "run-p watch start",
+    "watch": "run-p watch:*",
+    "watch:data": "nodemon --watch data --ext '*' --exec 'npm run build'",
+    "watch:src": "nodemon --watch src --ext '*' --exec 'npm run build:assets && npm run build:html'"
   },
   "repository": {
     "type": "git",
@@ -28,6 +33,8 @@
   "devDependencies": {
     "csvtojson": "^2.0.10",
     "html-validate": "^3.3.0",
+    "http-server": "^0.12.3",
+    "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^3.0.2"
