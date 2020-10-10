@@ -17,7 +17,6 @@ div.book-list
       h3.book__title= book.Title
       div.book__author= book.Author
       div.book__notes= book.Notes
-      div.book__category= book.Category
 style
   each category in categories
     ="#category-" + category + ":checked ~ .book-list .book:not([data-category='" + category + "']) { display: none; }"
