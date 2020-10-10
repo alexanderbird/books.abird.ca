@@ -21,7 +21,7 @@ file_path="./build/$isbn"
   exit 0
 }
 
-api="https://www.googleapis.com/books/v1/volumes?q=isbn:$isbn&key=$GOOGLE_BOOKS_API_KEY"
+api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&key=$GOOGLE_BOOKS_API_KEY"
 
 search_results=$(curl "$api")
 
