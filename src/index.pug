@@ -2,13 +2,22 @@ doctype html
 head
   title Bird Book Archive
   link(rel='stylesheet', href='site.css')
+
+input(type="radio",name="category",id="category-_all")
+label(for="category-_all")="All"
+each category in categories
+  input(type="radio",name="category",id="category-" + category)
+  label(for="category-" + category)=category
 div.book-list
-  each b in books
-    div.book
+  each book in books
+    div.book(data-category=book.Category)
       div.book__thumbnail
-        if b.ISBN
-          img(src=b.ISBN, alt="Thumbnail for " + b.Title)
-      h3.book__title= b.Title
-      div.book__author= b.Author
-      div.book__notes= b.Notes
-      div.book__category= b.Category
+        if book.ISBN
+          img(src=book.ISBN, alt="Thumbnail for " + book.Title)
+      h3.book__title= book.Title
+      div.book__author= book.Author
+      div.book__notes= book.Notes
+      div.book__category= book.Category
+style
+  each category in categories
+    ="#category-" + category + ":checked ~ .book-list .book:not([data-category='" + category + "']) { display: none; }"

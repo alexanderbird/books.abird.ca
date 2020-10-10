@@ -1,0 +1,4 @@
+{
+  books: .,
+  categories: [ .[].Category ] | unique
+}
