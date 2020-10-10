@@ -5,11 +5,11 @@ head
   meta(charset='UTF-8')
   link(rel='stylesheet', href='site.css')
 
-input(type="radio",name="category",id="category-_all")
-label(for="category-_all")="All"
+input.category-input(type="radio",name="category",id="category-_all",checked=true)
+label.category-input-label(for="category-_all")="All"
 each category in categories
-  input(type="radio",name="category",id="category-" + category)
-  label(for="category-" + category)=category
+  input.category-input(type="radio",name="category",id="category-" + category)
+  label.category-input-label(for="category-" + category)=category
 div.book-list
   each book in books
     div.book(data-category=book.Category)

@@ -1,7 +1,23 @@
+.category-input {
+  display: none;
+}
+
+.category-input-label {
+  background-color: #9999EE66;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.category-input:checked + .category-input-label {
+  background-color: #9999EEFF;
+}
+
 .book-list {
   --column-min-width: 350px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--column-min-width), 1fr));
+  margin-top: 10px;
 }
 
 .book {
