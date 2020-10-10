@@ -17,6 +17,11 @@ div.book-list
       h3.book__title= book.Title
       div.book__author= book.Author
       div.book__notes= book.Notes
+
+//- Generate CSS with a selector for each category filter:
+//- when a category is selected, hide all the books that aren't in the category
 style
   each category in categories
-    ="#category-" + category + ":checked ~ .book-list .book:not([data-category='" + category + "']) { display: none; }"
+    - let filterInputID = "#category-" + category
+    - let selectorForMatchingThisCategory = "[data-category='" + category + "']"
+    =`${filterInputID}:checked ~ .book-list .book:not(${selectorForMatchingThisCategory}) { display: none; }`
