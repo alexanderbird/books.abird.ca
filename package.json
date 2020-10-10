@@ -9,6 +9,7 @@
     "build": "run-s build:* test",
     "build:mkdir": "mkdir -p build",
     "build:data": "csvtojson data/books.csv | jq \"$(cat data/books_schema.jq)\" > build/books.json",
+    "build:thumbnail_overrides": "cp data/thumbnails/* build",
     "build:thumbnails": "cat build/books.json | jq -r '.books[] | select(.ISBN != \"\") | .ISBN' | xargs -n 1 ./download_thumbnail.sh",
     "build:css": "cp src/*.css build",
     "build:html": "pug src/index.pug --out build -O ./build/books.json",

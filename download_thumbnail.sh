@@ -23,13 +23,14 @@ file_path="./build/$isbn"
 
 api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&key=$GOOGLE_BOOKS_API_KEY"
 
-search_results=$(curl "$api")
+search_results="$(curl "$api")"
 
-thumbnail_url=$(echo "$search_results" | jq -r ".items[0].volumeInfo.imageLinks.smallThumbnail")
+# why the `tr`? https://stackoverflow.com/q/52399819/3012550
+thumbnail_url=$(echo "$search_results" | tr '\r\n' ' ' | jq -r ".items[0].volumeInfo.imageLinks.smallThumbnail")
 
 [[ "$thumbnail_url" == "" ]] || [[ "$thumbnail_url" == "null" ]] && {
   echo "Problem retrieving the thumbnail url for $isbn. Found JSON: "
-  echo "$search_results" | jq
+  echo "$search_results" | jq || echo "$search_results"
   exit 1
 }
 
