@@ -11,6 +11,4 @@ div.book-list
       h3.book__title= b.Title
       div.book__author= b.Author
       div.book__notes= b.Notes
-      div.book__tags
-        each tag in b.Tags.split(' ')
-          div.book__tag= tag
+      div.book__category= b.Category

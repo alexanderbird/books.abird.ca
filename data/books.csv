@@ -1,26 +1,26 @@
-ISBN,Title,Author,Tags,Notes
-,Nicholas Nickleby,Charles Dickens,stories,"small ""Collector's Library"" edition"
-,Moby-Dick,Herman Melville,stories,"small ""Collector's Library"" edition"
-,Emma,Jane Austen,stories,"small ""Collector's Library"" edition"
-,Electrical Engineering: Principles and Applications,Allan R. Hambley,engineering,Alex's university textbooks
-,University Physics,Sears and Zemansky,engineering,Alex's university textbooks
-,Classic Readings in Cultural Anthropology,Gary Ferraro,philosophy,Alex's university textbooks
-,An Introduction to Sceince and Technology Studies,Sergio Sismondo,engineering,Alex's university textbooks
-,A Practical Guide to Culture: Helping the Next Generarion Navigate Today's World,John Stonestreet & Brett Kunkle,youth,
-,The Case For Christ (youth edition),Lee Strobel with Jane Vogel,youth,
-,Short-Term Mission: An Ethnography of Christian Travel Narrative and Experiences,Brian M. Howell,philosophy,
-,Do Hard Things: A Teenage Rebellion Against Low Expectations,Alex & Brett Harris,youth,
-,Preparing Your Teens For College,Alex Chediak,youth,
-,Sacred Singleness: The Set-Apart Girl's Guide to Purpose and Fulfillment,Leslie Ludy,youth,Singleness -- women
-,Set-Apart Femininity: God's Sacred Intent for Every Young Woman,Leslie Ludy,youth,Singleness -- women
-,Family UNplanning: A Guide for Christian Couples Seeking God's Truth on Having Children,Craig Houghton,philosophy,with Alex's sticky notes & annotations about why he disagrees with the conclusion of this book
-,And The Bride Wore White: Seven Secrets to Sexual Purity,Dannah Gresh,youth,Singleness -- women
-,An Essay Concerning Human Understanding,John Locke,philosophy,Alex wants to read
-,Capital in the Twenty-First Century,Thomas Picketty,philosophy,Alex wants to read
-,The Illiad,Homer,stories,Alex wants to read
-,A crime so monstrous: face-to-face with modern-day slavery,E. Benjamin Skinner,history,Topic: uncomfortable history
-1476746605,All the light we cannot see,Anthony Doerr,history,Alex wants to read
-1473635314,Born a Crime: stories from a south african childhood,Trevor Noah,history,probably should read sometime
-,Introduction To Logic Design,Alan B. Marcovitz,engineering,Alex's university textbooks
-9780465029914,Blood Diamonds: Tracing the deadly path of the world's most precious stones,Greg Campbell,history,Topic: uncomfortable history
-000649918X,Master and Commander Series: 4-16,Patrick O'Brian,stories,Book list: en.wikipedia.org/wiki/Aubrey–Maturin_series
+ISBN,Title,Author,Category,Notes
+,Nicholas Nickleby,Charles Dickens,Stories,"small ""Collector's Library"" edition"
+,Moby-Dick,Herman Melville,Stories,"small ""Collector's Library"" edition"
+,Emma,Jane Austen,Stories,"small ""Collector's Library"" edition"
+,Electrical Engineering: Principles and Applications,Allan R. Hambley,Engineering,Alex's university textbooks
+,University Physics,Sears and Zemansky,Engineering,Alex's university textbooks
+,Classic Readings in Cultural Anthropology,Gary Ferraro,Philosophy,Alex's university textbooks
+,An Introduction to Sceince and Technology Studies,Sergio Sismondo,Engineering,Alex's university textbooks
+,A Practical Guide to Culture: Helping the Next Generarion Navigate Today's World,John Stonestreet & Brett Kunkle,Youth,
+,The Case For Christ (youth edition),Lee Strobel with Jane Vogel,Youth,
+,Short-Term Mission: An Ethnography of Christian Travel Narrative and Experiences,Brian M. Howell,Philosophy,
+,Do Hard Things: A Teenage Rebellion Against Low Expectations,Alex & Brett Harris,Youth,
+,Preparing Your Teens For College,Alex Chediak,Youth,
+,Sacred Singleness: The Set-Apart Girl's Guide to Purpose and Fulfillment,Leslie Ludy,Youth,Singleness -- women
+,Set-Apart Femininity: God's Sacred Intent for Every Young Woman,Leslie Ludy,Youth,Singleness -- women
+,Family UNplanning: A Guide for Christian Couples Seeking God's Truth on Having Children,Craig Houghton,Philosophy,with Alex's sticky notes & annotations about why he disagrees with the conclusion of this book
+,And The Bride Wore White: Seven Secrets to Sexual Purity,Dannah Gresh,Youth,Singleness -- women
+,An Essay Concerning Human Understanding,John Locke,Philosophy,Alex wants to read
+,Capital in the Twenty-First Century,Thomas Picketty,Philosophy,Alex wants to read
+,The Illiad,Homer,Stories,Alex wants to read
+,A crime so monstrous: face-to-face with modern-day slavery,E. Benjamin Skinner,History,Topic: uncomfortable history
+1476746605,All the light we cannot see,Anthony Doerr,History,Alex wants to read
+1473635314,Born a Crime: stories from a south african childhood,Trevor Noah,History,probably should read sometime
+,Introduction To Logic Design,Alan B. Marcovitz,Engineering,Alex's university textbooks
+9780465029914,Blood Diamonds: Tracing the deadly path of the world's most precious stones,Greg Campbell,History,Topic: uncomfortable history
+000649918X,Master and Commander Series: 4-16,Patrick O'Brian,Stories,Book list: en.wikipedia.org/wiki/Aubrey–Maturin_series
