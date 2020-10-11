@@ -1,38 +1,43 @@
-ISBN,Title,Author,Category,Notes
-1904633846,Nicholas Nickleby,Charles Dickens,Stories,"small ""Collector's Library"" edition"
-1904633773,Moby-Dick,Herman Melville,Stories,"small ""Collector's Library"" edition"
-1904633005,Emma,Jane Austen,Stories,"small ""Collector's Library"" edition"
-9780132130066,Electrical Engineering: Principles and Applications,Allan R. Hambley,Engineering,Alex's university textbooks
-9780321500762,University Physics,Sears and Zemansky,Engineering,Alex's university textbooks
-9780495507369,Classic Readings in Cultural Anthropology,Gary Ferraro,Philosophy,Alex's university textbooks
-9781405187657,An Introduction to Sceince and Technology Studies,Sergio Sismondo,Engineering,Alex's university textbooks
-9781434711014,A Practical Guide to Culture: Helping the Next Generarion Navigate Today's World,John Stonestreet & Brett Kunkle,Youth,
-0310242193,The Case For Christ (youth edition),Lee Strobel with Jane Vogel,Youth,
-9780830839735,Short-Term Mission: An Ethnography of Christian Travel Narrative and Experiences,Brian M. Howell,Philosophy,
-9781601421128,Do Hard Things: A Teenage Rebellion Against Low Expectations,Alex & Brett Harris,Youth,
-9781414383125,Preparing Your Teens For College,Alex Chediak,Youth,
-9780736922883,Sacred Singleness: The Set-Apart Girl's Guide to Purpose and Fulfillment,Leslie Ludy,Youth,Singleness -- women
-9780736922869,Set-Apart Femininity: God's Sacred Intent for Every Young Woman,Leslie Ludy,Youth,Singleness -- women
-1600348513,Family UNplanning: A Guide for Christian Couples Seeking God's Truth on Having Children,Craig Houghton,Philosophy,with Alex's sticky notes & annotations about why he disagrees with the conclusion of this book
-9780802408136,And The Bride Wore White: Seven Secrets to Sexual Purity,Dannah Gresh,Youth,Singleness -- women
-9780879759179,An Essay Concerning Human Understanding,John Locke,Philosophy,Alex wants to read
-9780674430006,Capital in the Twenty-First Century,Thomas Picketty,Philosophy,Alex wants to read
-9781848373259,The Illiad,Homer,Stories,Alex wants to read
-0743290070,A crime so monstrous: face-to-face with modern-day slavery,E. Benjamin Skinner,History,Topic: uncomfortable history
-9781501104565,All the light we cannot see,Anthony Doerr,History,Alex wants to read
-9780385689229,Born a Crime: stories from a south african childhood,Trevor Noah,History,probably should read sometime
-9780073191645,Introduction To Logic Design,Alan B. Marcovitz,Engineering,Alex's university textbooks
-9780813342207,Blood Diamonds: Tracing the deadly path of the world's most precious stones,Greg Campbell,History,Topic: uncomfortable history
-000649918X,The Mauritius Command ,Patrick O'Brian,Stories,Aubrey-Maturin #4
-0006499244,Desolation Island ,Patrick O'Brian,Stories,Aubrey-Maturin #5
-0006499198,The Fortune of War ,Patrick O'Brian,Stories,Aubrey-Maturin #6
-000649921X,The Surgeon's Mate ,Patrick O'Brian,Stories,Aubrey-Maturin #7
-0006499228,The Ionian Mission ,Patrick O'Brian,Stories,Aubrey-Maturin #8
-0006499236,Treason's Harbour ,Patrick O'Brian,Stories,Aubrey-Maturin #9
-0393308626,The Far Side of the World ,Patrick O'Brian,Stories,Aubrey-Maturin #10
-0006499260,The Reverse of the Medal ,Patrick O'Brian,Stories,Aubrey-Maturin #11
-9780393309058,The Letter of Marque ,Patrick O'Brian,Stories,Aubrey-Maturin #12
-0006499287,The Thirteen-Gun Salute ,Patrick O'Brian,Stories,Aubrey-Maturin #13
-0006179290,The Nutmeg of Consolation ,Patrick O'Brian,Stories,Aubrey-Maturin #14
-0006472559,Clarissa Oakes ,Patrick O'Brian,Stories,Aubrey-Maturin #15
-0006470165,The Wine-Dark Sea ,Patrick O'Brian,Stories,Aubrey-Maturin #16
+ISBN,Title,Author,Location,Category,Notes
+1904633846,Nicholas Nickleby,Charles Dickens,Archive,Stories,"small ""Collector's Library"" edition"
+1904633773,Moby-Dick,Herman Melville,Archive,Stories,"small ""Collector's Library"" edition"
+1904633005,Emma,Jane Austen,Archive,Stories,"small ""Collector's Library"" edition"
+9780132130066,Electrical Engineering: Principles and Applications,Allan R. Hambley,Archive,Engineering,Alex's university textbooks
+9780321500762,University Physics,Sears and Zemansky,Archive,Engineering,Alex's university textbooks
+9780495507369,Classic Readings in Cultural Anthropology,Gary Ferraro,Archive,Philosophy,Alex's university textbooks
+9781405187657,An Introduction to Sceince and Technology Studies,Sergio Sismondo,Archive,Engineering,Alex's university textbooks
+9781434711014,A Practical Guide to Culture: Helping the Next Generarion Navigate Today's World,John Stonestreet & Brett Kunkle,Archive,Youth,
+0310242193,The Case For Christ (youth edition),Lee Strobel with Jane Vogel,Archive,Youth,
+9780830839735,Short-Term Mission: An Ethnography of Christian Travel Narrative and Experiences,Brian M. Howell,Archive,Philosophy,
+9781601421128,Do Hard Things: A Teenage Rebellion Against Low Expectations,Alex & Brett Harris,Archive,Youth,
+9781414383125,Preparing Your Teens For College,Alex Chediak,Archive,Youth,
+9780736922883,Sacred Singleness: The Set-Apart Girl's Guide to Purpose and Fulfillment,Leslie Ludy,Archive,Youth,Singleness -- women
+9780736922869,Set-Apart Femininity: God's Sacred Intent for Every Young Woman,Leslie Ludy,Archive,Youth,Singleness -- women
+1600348513,Family UNplanning: A Guide for Christian Couples Seeking God's Truth on Having Children,Craig Houghton,Archive,Philosophy,with Alex's sticky notes & annotations about why he disagrees with the conclusion of this book
+9780802408136,And The Bride Wore White: Seven Secrets to Sexual Purity,Dannah Gresh,Archive,Youth,Singleness -- women
+9780879759179,An Essay Concerning Human Understanding,John Locke,Archive,Philosophy,Alex wants to read
+9780674430006,Capital in the Twenty-First Century,Thomas Picketty,Archive,Philosophy,Alex wants to read
+9781848373259,The Illiad,Homer,Archive,Stories,Alex wants to read
+0743290070,A crime so monstrous: face-to-face with modern-day slavery,E. Benjamin Skinner,Archive,History,Topic: uncomfortable history
+9781501104565,All the light we cannot see,Anthony Doerr,Archive,History,Alex wants to read
+9780385689229,Born a Crime: stories from a south african childhood,Trevor Noah,Archive,History,probably should read sometime
+9780073191645,Introduction To Logic Design,Alan B. Marcovitz,Archive,Engineering,Alex's university textbooks
+9780813342207,Blood Diamonds: Tracing the deadly path of the world's most precious stones,Greg Campbell,Archive,History,Topic: uncomfortable history
+,Master and Commander,Patrick O'Brian,Missing,Stories,Aubrey-Maturin #1
+,Post Captain,Patrick O'Brian,Missing,Stories,Aubrey-Maturin #2
+,HMS Surprise,Patrick O'Brian,Missing,Stories,Aubrey-Maturin #3
+000649918X,The Mauritius Command ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #4
+0006499244,Desolation Island ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #5
+0006499198,The Fortune of War ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #6
+000649921X,The Surgeon's Mate ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #7
+0006499228,The Ionian Mission ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #8
+0006499236,Treason's Harbour ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #9
+0393308626,The Far Side of the World ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #10
+0006499260,The Reverse of the Medal ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #11
+9780393309058,The Letter of Marque ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #12
+0006499287,The Thirteen-Gun Salute ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #13
+0006179290,The Nutmeg of Consolation ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #14
+0006472559,Clarissa Oakes ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #15
+0006470165,The Wine-Dark Sea ,Patrick O'Brian,Archive,Stories,Aubrey-Maturin #16
+9781595554826,"In, But Not Of Revised and Updated: A Guide to Christian Ambition and the Desire to Influence the World",Hugh Hewitt,Missing,,
+9780141915302,Early Christian Writings: The Apostolic Fathers,,Missing,,

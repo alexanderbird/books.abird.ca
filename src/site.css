@@ -28,7 +28,7 @@
     'thumbnail title'
     'thumbnail author'
     'thumbnail notes'
-    'thumbnail .';
+    'thumbnail location';
 
   grid-column-gap: 5px;
 
@@ -57,3 +57,11 @@
   grid-area: notes;
   font-style: italic;
 }
+
+.book__location {
+  font-size: 1.5em;
+  padding: 5px;
+  margin-top: auto;
+  direction: rtl;
+}
+

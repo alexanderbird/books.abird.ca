@@ -8,10 +8,10 @@ head
   link(rel='stylesheet', href='site.css')
 
 input.category-input(type="radio",name="category",id="category-_all",checked=true)
-label.category-input-label(for="category-_all")="All"
+label.category-input-label(for="category-_all")="All Categories"
 each category in categories
   input.category-input(type="radio",name="category",id="category-" + category)
-  label.category-input-label(for="category-" + category)=category
+  label.category-input-label(for="category-" + category)=category || 'None'
 div.book-list
   each book in books
     div.book(data-category=book.Category)
@@ -21,6 +21,8 @@ div.book-list
       h3.book__title= book.Title
       div.book__author= book.Author
       div.book__notes= book.Notes
+      div.book__location= locations[book.Location]
+
 script(src='section_filters.js')
 
 //- Generate CSS with a selector for each category filter:
