@@ -17,7 +17,10 @@ div.book-list
     if book.Title
       div.book(data-category=book.Category,style=`--book-color: ${book.Color};`)
         div.book__thumbnail
-          if book.ISBN
+          if book.ISBN && book['Google ID']
+            a(href=`https://books.google.ca/books?id=${book['Google ID']}`)
+              img(src=book.ISBN, alt="Thumbnail for " + book.Title)
+          else if book.ISBN
             img(src=book.ISBN, alt="Thumbnail for " + book.Title)
         h3.book__title= book.Title
         div.book__author= book.Author

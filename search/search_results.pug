@@ -10,6 +10,7 @@ div.result-list
         data-title=result.title,
         data-author=result.author,
         data-thumbnail=result.thumbnail,
+        data-google_id=result.google_id,
         title="Click to copy command"
       )
       div.thumbnail
@@ -34,13 +35,13 @@ script.
   document.addEventListener('DOMContentLoaded', () => {
     Array.from(document.querySelectorAll('.result')).forEach(result => {
       result.addEventListener('click', () => {
-        const { isbn, title, author, thumbnail } = result.dataset;
+        const { isbn, title, author, thumbnail, google_id } = result.dataset;
         const command = `
           function load_${isbn}() {
             curl "${thumbnail}" > data/thumbnails/${isbn}
             convert data/thumbnails/${isbn} -resize x192 data/thumbnails/${isbn}
             ed -s data/books.csv <<< w
-            echo -E "${isbn},${title},${author},,," >> data/books.csv
+            echo -E "${isbn},${title},${author},,,,${google_id}" >> data/books.csv
           }; load_${isbn}`.split(/\n/).map(x => x.replace(/^        /, '')).join('\n');
         navigator.clipboard.writeText(command)
           .then(() => window.close())

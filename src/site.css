@@ -47,6 +47,10 @@
   display: flex;
 }
 
+.book__thumbnail a img {
+  height: 100%;
+}
+
 .book__title {
   gird-area: title;
 }
