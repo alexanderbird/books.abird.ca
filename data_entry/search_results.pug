@@ -1,0 +1,47 @@
+doctype html
+head
+  title=isbn + " Search Results"
+  meta(charset='UTF-8')
+
+div.result-list
+  each result in results
+    div.result(
+        data-isbn=isbn,
+        data-title=result.title,
+        data-author=result.author,
+        data-thumbnail=result.thumbnail,
+        title="Click to copy command"
+      )
+      div.thumbnail
+        img(src=result.thumbnail, alt="Thumbnail for " + result.title)
+      div.title= result.title
+      div.author= result.author
+
+style.
+  .result-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+  }
+
+  .result {
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+script.
+  document.addEventListener('DOMContentLoaded', () => {
+    Array.from(document.querySelectorAll('.result')).forEach(result => {
+      result.addEventListener('click', () => {
+        const { isbn, title, author, thumbnail } = result.dataset;
+        const command = [
+          `curl "${thumbnail}" > data/thumbnails/${isbn}`,
+          `ed -s data/books.csv <<< w # ensure the csv ends in a newline`,
+          `echo "${isbn}, ${title}, ${author}" >> data/books.csv`
+        ].join('\n') + '\n';
+        navigator.clipboard.writeText(command).catch(alert);
+      });
+    });
+  });
+  

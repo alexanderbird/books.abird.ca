@@ -18,7 +18,8 @@
     "dev": "run-p watch start",
     "watch": "run-p watch:*",
     "watch:data": "nodemon --watch data --ext '*' --exec 'npm run build'",
-    "watch:src": "nodemon --watch src --ext '*' --exec 'npm run build:assets && npm run build:html'"
+    "watch:src": "nodemon --watch src --ext '*' --exec 'npm run build:assets && npm run build:html'",
+    "generate": "data_entry/search_by_ip.sh"
   },
   "repository": {
     "type": "git",
