@@ -13,7 +13,7 @@ helpful:
 
 ## Loading new books
 
-To pre-populate the csv & thumbnail, run `npm run generate -- <isbn>`.
+To pre-populate the csv & thumbnail, run `npm run search -- <isbn>`.
 
 This will generate an html summary of the search results and open it.
 

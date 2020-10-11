@@ -20,9 +20,9 @@ api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&orderBy=relevance&
 
 curl "$api" \
   | tr '\r\n' ' ' \
-  | jq "{ isbn: \"$isbn\", results: [ $(cat data_entry/search_results_schema.jq) ] }" \
+  | jq "{ isbn: \"$isbn\", results: [ $(cat search/search_results_schema.jq) ] }" \
   > /tmp/search_results.json
 
-pug data_entry/search_results.pug --out /tmp -O /tmp/search_results.json
+pug search/search_results.pug --out /tmp -O /tmp/search_results.json
 
 open /tmp/search_results.html
