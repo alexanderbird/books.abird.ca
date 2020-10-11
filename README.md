@@ -21,3 +21,8 @@ Click on the tile that looks right. This copies some bash to your clipboard.
 
 Paste that bash into a terminal in the project root directory to download the
 thumbnail and put the isbn/title/author at the end of the csv file.
+
+### Updating the color map
+
+When you're done a batch, re-run `npm run generate-color-map` to update
+colors.json

@@ -15,7 +15,7 @@ each category in categories
 div.book-list
   each book in books
     if book.Title
-      div.book(data-category=book.Category)
+      div.book(data-category=book.Category,style=`--book-color: ${book.Color};`)
         div.book__thumbnail
           if book.ISBN
             img(src=book.ISBN, alt="Thumbnail for " + book.Title)

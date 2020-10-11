@@ -9,17 +9,19 @@
     "build:mkdir": "mkdir -p build",
     "build:sanitize-csv:1": "tr -d '\\015' <data/books.csv >/tmp/data-books.csv",
     "build:sanitize-csv:2": "mv /tmp/data-books.csv data/books.csv",
-    "build:data": "csvtojson data/books.csv | jq \"$(cat data/books_schema.jq)\" > build/books.json",
+    "build:data-main": "csvtojson data/books.csv | jq \"$(cat data/books_schema.jq)\" > build/books.json",
+    "build:data-merge-colors": "cat ./build/books.json | jq --arg opacity \"44\" --argfile colors ./data/colors.json \"$(cat data/colors_transform.jq)\" > ./build/books.json",
     "build:thumbnails": "cp data/thumbnails/* build",
     "build:assets": "cp src/*.css build && cp src/*.js build",
     "build:html": "pug src/index.pug --out build -O ./build/books.json",
-    "test": "html-validate build/index.html",
+    "test": "html-validate --rule no-inline-style:0 build/index.html",
     "start": "http-server build",
     "dev": "run-p watch start",
     "watch": "run-p watch:*",
     "watch:data": "nodemon --watch data --ext '*' --exec 'npm run build'",
     "watch:src": "nodemon --watch src --ext '*' --exec 'npm run build:assets && npm run build:html'",
-    "search": "search/search_by_ip.sh"
+    "search": "search/search_by_ip.sh",
+    "generate-color-map": "ls data/thumbnails/ | xargs -n 1 data/average_color.sh | jq --slurp 'add' > ./data/colors.json"
   },
   "repository": {
     "type": "git",

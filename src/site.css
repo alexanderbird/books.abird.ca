@@ -36,6 +36,8 @@
   border-radius: 10px;
   margin: 5px;
   overflow: hidden;
+
+  background-color: var(--book-color);
 }
 
 .book__thumbnail {
