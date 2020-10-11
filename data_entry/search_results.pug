@@ -35,13 +35,16 @@ script.
     Array.from(document.querySelectorAll('.result')).forEach(result => {
       result.addEventListener('click', () => {
         const { isbn, title, author, thumbnail } = result.dataset;
-        const command = [
-          `curl "${thumbnail}" > data/thumbnails/${isbn}`,
-          `convert data/thumbnails/${isbn} -resize x192 data/thumbnails/${isbn}`;
-          `ed -s data/books.csv <<< w # ensure the csv ends in a newline`,
-          `echo "${isbn}, ${title}, ${author}" >> data/books.csv`
-        ].join('\n') + '\n';
-        navigator.clipboard.writeText(command).catch(alert);
+        const command = `
+          function load_${isbn}() {
+            curl "${thumbnail}" > data/thumbnails/${isbn}
+            convert data/thumbnails/${isbn} -resize x192 data/thumbnails/${isbn}
+            ed -s data/books.csv <<< w
+            echo "${isbn}, ${title}, ${author}" >> data/books.csv
+          }; load_${isbn}`.split(/\n/).map(x => x.replace(/^        /, '')).join('\n');
+        navigator.clipboard.writeText(command)
+          .then(() => window.close())
+          .catch(e => alert(e));
       });
     });
   });
