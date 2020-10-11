@@ -18,6 +18,8 @@ file_path="./build/$isbn"
 
 api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&orderBy=relevance&key=$GOOGLE_BOOKS_API_KEY"
 
+rm /tmp/search_results.{json,html}
+
 curl "$api" \
   | tr '\r\n' ' ' \
   | jq "{ isbn: \"$isbn\", results: [ $(cat search/search_results_schema.jq) ] }" \

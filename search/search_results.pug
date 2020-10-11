@@ -40,7 +40,7 @@ script.
             curl "${thumbnail}" > data/thumbnails/${isbn}
             convert data/thumbnails/${isbn} -resize x192 data/thumbnails/${isbn}
             ed -s data/books.csv <<< w
-            echo "${isbn}, ${title}, ${author}" >> data/books.csv
+            echo -E "${isbn},${title},${author},,," >> data/books.csv
           }; load_${isbn}`.split(/\n/).map(x => x.replace(/^        /, '')).join('\n');
         navigator.clipboard.writeText(command)
           .then(() => window.close())
