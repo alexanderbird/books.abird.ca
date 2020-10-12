@@ -18,9 +18,16 @@ file_path="./build/$isbn"
 
 api="https://www.googleapis.com/books/v1/volumes?q=ISBN:$isbn&orderBy=relevance&key=$GOOGLE_BOOKS_API_KEY"
 
-rm /tmp/search_results.{json,html}
+rm -f /tmp/search_results.{json,html}
 
-curl "$api" \
+search_results="$(curl "$api")"
+
+[[ "$(echo -E "$search_results" | jq -r .totalItems)" == "0" ]] && {
+  echo "Zero results for $isbn 🤷"
+  exit 1
+}
+
+echo -E "$search_results" \
   | tr '\r\n' ' ' \
   | jq "{ isbn: \"$isbn\", results: [ $(cat search/search_results_schema.jq) ] }" \
   > /tmp/search_results.json
