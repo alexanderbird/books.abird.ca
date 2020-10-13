@@ -8,6 +8,8 @@ source .env || echo "Skipped loading .env"
 }
 
 isbn=$1
+location=$2
+category=$3
 
 [[ "$isbn" == "" ]] && {
   echo "Missing isbn parameter"
@@ -29,7 +31,7 @@ search_results="$(curl "$api")"
 
 echo -E "$search_results" \
   | tr '\r\n' ' ' \
-  | jq "{ isbn: \"$isbn\", results: [ $(cat search/search_results_schema.jq) ] }" \
+  | jq "{ isbn: \"$isbn\", location: \"$location\", category: \"$category\", results: [ $(cat search/search_results_schema.jq) ] }" \
   > /tmp/search_results.json
 
 pug search/search_results.pug --out /tmp -O /tmp/search_results.json
