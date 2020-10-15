@@ -40,10 +40,10 @@ script(src='section_filters.js')
 //- the selected filters, show it.
 style.
   body[data-category]:not([data-category='']) .book-list .book {
-    display: none;
+    --hidden: none;
   }
 style
   each category in categories
     - let categoryKey = category || '__'
     - let selectorForMatchingThisCategory = "[data-category='" + category + "']"
-    =`body[data-category~='${categoryKey}'] .book-list .book[data-category='${categoryKey}'] { display: block; }`
+    =`body[data-category~='${categoryKey}'] .book-list .book[data-category='${categoryKey}'] { --hidden: unset; }`
