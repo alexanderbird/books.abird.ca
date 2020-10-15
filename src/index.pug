@@ -7,15 +7,21 @@ head
   meta(charset='UTF-8')
   link(rel='stylesheet', href='site.css')
 
-input.category-input(type="radio",name="category",id="category-_all",checked=true)
-label.category-input-label(for="category-_all")="All Categories"
-each category in categories
-  input.category-input(type="radio",name="category",id="category-" + category)
-  label.category-input-label(for="category-" + category)=category || 'None'
+div.filters
+  div.filter
+    each category in categories
+      button.filter-button(
+        data-filter-type='category',
+        data-filter-value=category || '__',
+        data-filter-selected='no'
+      )=category || 'None'
 div.book-list
   each book in books
     if book.Title
-      div.book(data-category=book.Category,style=`--book-color: ${book.Color};`)
+      div.book(
+        data-category=book.Category || '__',
+        style=`--book-color: ${book.Color};`
+      )
         div.book__thumbnail
           if book.ISBN && book['Google ID']
             a(href=`https://books.google.ca/books?id=${book['Google ID']}`)
@@ -30,9 +36,14 @@ div.book-list
 script(src='section_filters.js')
 
 //- Generate CSS with a selector for each category filter:
-//- when a category is selected, hide all the books that aren't in the category
+//- If any category filter is set, hide everything. If the book matches at least one of
+//- the selected filters, show it.
+style.
+  body[data-category]:not([data-category='']) .book-list .book {
+    display: none;
+  }
 style
   each category in categories
-    - let filterInputID = "#category-" + category
+    - let categoryKey = category || '__'
     - let selectorForMatchingThisCategory = "[data-category='" + category + "']"
-    =`${filterInputID}:checked ~ .book-list .book:not(${selectorForMatchingThisCategory}) { display: none; }`
+    =`body[data-category~='${categoryKey}'] .book-list .book[data-category='${categoryKey}'] { display: block; }`

@@ -1,15 +1,12 @@
-.category-input {
-  display: none;
-}
-
-.category-input-label {
+.filter-button {
   background-color: #9999EE66;
   border-radius: 2px;
   margin: 5px;
   padding: 5px;
+  border: 0;
 }
 
-.category-input:checked + .category-input-label {
+.filter-button[data-filter-selected='yes'] {
   background-color: #9999EEFF;
 }
 
@@ -52,7 +49,7 @@
 }
 
 .book__title {
-  gird-area: title;
+  grid-area: title;
 }
 
 .book__author {
