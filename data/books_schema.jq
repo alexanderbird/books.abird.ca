@@ -1,5 +1,5 @@
 {
-  books: . | sort_by(.Category),
+  books: . | sort_by(.Author),
   categories: [ .[].Category ] | unique,
   locations: {
     Archive: "📦",
