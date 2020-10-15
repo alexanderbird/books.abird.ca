@@ -16,7 +16,7 @@ function attachClickEvents() {
       }
 
       document.body.dataset[filterType] = next.join(' ');
-      history.pushState(null, null, `#category=${next.join(',')}`);
+      history.pushState(null, null, next.length ? `#category=${next.join(',')}` : '#');
     });
   });
 }
@@ -27,6 +27,7 @@ function updateFilterFromUrlHash() {
     Array.from(document.querySelectorAll(`.filter-button`)).forEach(button => {
       button.dataset.filterSelected = 'no';
     });
+    document.body.dataset.category = '';
     return;
   }
   const entries = hash.split(';');
