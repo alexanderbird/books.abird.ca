@@ -1,19 +1,3 @@
-function filterBooks(category) {
-  const categoryInput = document.querySelector(`#category-${category}`);
-  if (categoryInput) {
-    categoryInput.checked = true;
-  } else {
-    document.querySelector('#category-_all').checked = true;
-  }
-}
-
-function updateFilterFromUrlHash() {
-  const hash = window.location.hash.replace(/^#/, '');
-  if (hash) {
-    filterBooks(hash);
-  }
-}
-
 function attachClickEvents() {
   Array.from(document.querySelectorAll('.filter-button')).forEach(button => {
     button.addEventListener('click', () => {
@@ -32,6 +16,28 @@ function attachClickEvents() {
       }
 
       document.body.dataset[filterType] = next.join(' ');
+      history.pushState(null, null, `#category=${next.join(',')}`);
+    });
+  });
+}
+
+function updateFilterFromUrlHash() {
+  const hash = location.hash.replace(/^#/, '');
+  if (!hash) {
+    Array.from(document.querySelectorAll(`.filter-button`)).forEach(button => {
+      button.dataset.filterSelected = 'no';
+    });
+    return;
+  }
+  const entries = hash.split(';');
+  entries.forEach(entry => {
+    const [ key, valuesString ] = entry.split('=');
+    const values = valuesString.split(',');
+
+    document.body.dataset[key] = values.join(' ');
+    Array.from(document.querySelectorAll(`.filter-button[data-filter-type='${key}']`)).forEach(button => {
+      const selected = values.indexOf(button.dataset.filterValue) >= 0;
+      button.dataset.filterSelected = selected ? 'yes' : 'no';
     });
   });
 }
