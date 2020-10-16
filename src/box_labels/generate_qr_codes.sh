@@ -4,7 +4,7 @@ outpath="$2"
 [[ "$url" == "" ]] && { echo "Missing URL parameter"; exit 1; }
 [[ "$outpath" == "" ]] && { echo "Missing output path parameter"; exit 1; }
 
-rm "./$outpath/*" || :
+rm -r "./$outpath" || :
 mkdir -p "./$outpath"
 
 cat src/box_labels/boxes.json \

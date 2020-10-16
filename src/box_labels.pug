@@ -5,9 +5,37 @@ head
 
 style.
   .box-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    page-break-after: always;
+    height: 500px;
+  }
+
+  @media print {
+    .box-label {
+      height: 8in;
+    }
+  }
+
+  .box-label > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .box-label__qr-code {
+    margin-top: auto;
+    width: 300px;
+    height: auto;
+  }
+
+  .box-label__text {
+    font-size: 2em;
+    margin-bottom: auto;
   }
 
 each box in boxes
   div.box-label
-    img(src=`/qr-codes/${box.slug}.png`)
-    h4=box.name
+    img.box-label__qr-code(src=`/qr-codes/${box.slug}.png`)
+    h4.box-label__text=box.name

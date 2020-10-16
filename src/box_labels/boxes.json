@@ -20,6 +20,11 @@
     "path": "category=Stories;location=Archive"
   },
   {
+    "slug": "unsorted",
+    "name": "Unsorted",
+    "path": "category=__;location=Archive"
+  },
+  {
     "slug": "youth",
     "name": "Youth",
     "path": "category=Youth-Practical,Youth-Stories;location=Archive"
