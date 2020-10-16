@@ -7,6 +7,7 @@ head
   meta(charset='UTF-8')
   link(rel='stylesheet', href='site.css')
 
+script(src='section_filters.js')
 div.filters
   div.filter
     each category in categories
@@ -33,7 +34,6 @@ div.book-list
         div.book__notes= book.Notes
         div.book__location= locations[book.Location]
 
-script(src='section_filters.js')
 
 //- Generate CSS with a selector for each category filter:
 //- If any category filter is set, hide everything. If the book matches at least one of
