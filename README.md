@@ -1,3 +1,8 @@
+## Dev Setup
+
+    npm install
+    brew install qrencode
+
 
 ## Overriding Thumbnails
 
@@ -26,3 +31,8 @@ thumbnail and put the isbn/title/author at the end of the csv file.
 
 When you're done a batch, re-run `npm run generate-color-map` to update
 colors.json
+
+### Updating box labels
+
+If you edit `src/box_labels.books.json`, re-run `npm run generate-qr-codes` to
+update the QR codes to match the new box list.

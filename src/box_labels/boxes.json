@@ -1,0 +1,27 @@
+{ "boxes": [
+  {
+    "slug": "engg",
+    "name": "Engineering",
+    "path": "category=Engineering;location=Archive"
+  },
+  {
+    "slug": "ideas",
+    "name": "History and Philosophy",
+    "path": "category=History,Philosophy;location=Archive"
+  },
+  {
+    "slug": "practical",
+    "name": "Practical",
+    "path": "category=Practical;location=Archive"
+  },
+  {
+    "slug": "stories",
+    "name": "Stories",
+    "path": "category=Stories;location=Archive"
+  },
+  {
+    "slug": "youth",
+    "name": "Youth",
+    "path": "category=Youth-Practical,Youth-Stories;location=Archive"
+  }
+] }
