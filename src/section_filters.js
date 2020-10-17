@@ -21,6 +21,30 @@ function attachClickEvents() {
   });
 }
 
+function showAndHideBooks(search) {
+  const searchExpressions = search.toLowerCase().split(' ');
+  Array.from(document.querySelectorAll('.book'))
+    .forEach(book => {
+      const bookEntryText = book.textContent.toLowerCase();
+      const showBook = searchExpressions.every(word => bookEntryText.indexOf(word) >= 0);
+      const hideBook = !showBook;
+      book.style.setProperty('--hidden-by-search', hideBook ? 'none' : 'unset');
+    });
+}
+
+function initializeSearchInput() {
+  const searchInput = document.querySelector('.search');
+  searchInput.value = document.body.dataset.search || '';
+  searchInput.addEventListener('keyup', () => {
+    const search = searchInput.value.trim();
+    showAndHideBooks(search);
+    document.body.dataset.search = search;
+    window.location.hash = '#' + serializeBodyDataset(document.body.dataset);
+  });
+
+  showAndHideBooks(searchInput.value.trim());
+}
+
 function serializeBodyDataset(dataset) {
   return Object.entries(document.body.dataset)
     .map(([ key, value ]) => `${key}=${value.replace(/ /g, ',')}`)
@@ -50,8 +74,9 @@ function updateFilterFromUrlHash() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  attachClickEvents();
   updateFilterFromUrlHash();
+  attachClickEvents();
+  initializeSearchInput();
 });
 
 window.addEventListener('hashchange', function() {

@@ -1,5 +1,7 @@
 .filter-group {
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .filter-button {
@@ -8,6 +10,14 @@
   margin: 5px;
   padding: 5px;
   border: 0;
+}
+
+.search {
+  margin: 5px;
+  flex: 1;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: none;
 }
 
 .filter-button[data-filter-selected='yes'] {

@@ -33,6 +33,9 @@ div.filters
         data-filter-value='__',
         data-filter-selected='no'
       )='None'
+  div.filter-group
+    span.filter-group__label='Search'
+    input.search(placeholder='Search titles, authors, and notes')
 div.book-list
   each book in books
     if book.Title
@@ -63,10 +66,13 @@ style.
   body[data-location]:not([data-location='']) .book-list .book {
     --hidden-location: none;
   }
+  body[data-search]:not([data-search='']) .book-list .book {
+    --hidden-by-search: none;
+  }
   .book {
-    /* it is not hidden if the category doesn't hide it and the location doesn't hide it */
-    /* in other words, hide every book for which the location doesn't match or the category doesn't match */
-    --hidden: var(--hidden-category, var(--hidden-location));
+    /* it is not hidden if the category doesn't hide it and the location doesn't hide it and the search doesn't hide it*/
+    /* in other words, hide every book for which the location doesn't match or the category doesn't match or the search doesn't match*/
+    --hidden: var(--hidden-category, var(--hidden-location, var(--hidden-by-search)));
   }
 style
   each category in categories
