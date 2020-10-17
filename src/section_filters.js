@@ -16,9 +16,15 @@ function attachClickEvents() {
       }
 
       document.body.dataset[filterType] = next.join(' ');
-      history.pushState(null, null, next.length ? `#category=${next.join(',')}` : '#');
+      history.pushState(null, null, '#' + serializeBodyDataset(document.body.dataset));
     });
   });
+}
+
+function serializeBodyDataset(dataset) {
+  return Object.entries(document.body.dataset)
+    .map(([ key, value ]) => `${key}=${value.replace(/ /g, ',')}`)
+    .join(';');
 }
 
 function updateFilterFromUrlHash() {

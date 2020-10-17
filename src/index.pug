@@ -21,6 +21,7 @@ div.book-list
     if book.Title
       div.book(
         data-category=book.Category || '__',
+        data-location=book.Location || '__',
         style=`--book-color: ${book.Color};`
       )
         div.book__thumbnail
@@ -40,10 +41,23 @@ div.book-list
 //- the selected filters, show it.
 style.
   body[data-category]:not([data-category='']) .book-list .book {
-    --hidden: none;
+    --hidden-category: none;
+  }
+  body[data-location]:not([data-location='']) .book-list .book {
+    --hidden-location: none;
+  }
+  .book {
+    /* it is not hidden if the category doesn't hide it and the location doesn't hide it */
+    /* in other words, hide every book for which the location doesn't match or the category doesn't match */
+    --hidden: var(--hidden-category, var(--hidden-location));
   }
 style
   each category in categories
     - let categoryKey = category || '__'
     - let selectorForMatchingThisCategory = "[data-category='" + category + "']"
-    =`body[data-category~='${categoryKey}'] .book-list .book[data-category='${categoryKey}'] { --hidden: unset; }`
+    =`body[data-category~='${categoryKey}'] .book-list .book[data-category='${categoryKey}'] { --hidden-category: unset; }`
+  each location in Object.entries(locations)
+    - let name = location[0] || '__'
+    - let icon = location[1]
+    =`body[data-location~='${name}'] .book-list .book[data-location='${name}'] { --hidden-location: unset; }`
+
