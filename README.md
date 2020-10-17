@@ -4,6 +4,20 @@
     brew install qrencode
 
 
+## Editing the books.csv file
+
+If you open it in Excel, Excel is "smart" enough to notice the first column
+looks like numbers, so it discards all the "irrelevant" leading zeroes and
+breaks everything. So, instead you must open a blank worksheet in Excel and
+import `data/books.csv`.
+
+ - Select Origin "UTF-8"
+ - Select Delimited > Comma
+ - Mark the first column as Text (*not* number)
+
+When you save, you can save as .csv to replace the original.
+
+
 ## Overriding Thumbnails
 
 If the google books results don't give the right thumbnail, you can override it
