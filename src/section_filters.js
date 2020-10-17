@@ -57,6 +57,3 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', function() {
   updateFilterFromUrlHash();
 }, false);
-
-// Update the filter before the first render
-updateFilterFromUrlHash();
