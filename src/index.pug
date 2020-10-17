@@ -9,14 +9,16 @@ head
 
 script(src='section_filters.js')
 div.filters
-  div.filter-group(data-name='Category')
+  div.filter-group
+    span.filter-group__label='Category'
     each category in categories
       button.filter-button(
         data-filter-type='category',
         data-filter-value=category || '__',
         data-filter-selected='no'
       )=category || 'None'
-  div.filter-group(data-name='Location')
+  div.filter-group
+    span.filter-group__label='Location'
     each location in Object.entries(locations)
       - let name = location[0]
       - let icon = location[1]

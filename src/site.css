@@ -2,10 +2,6 @@
   margin-top: 10px;
 }
 
-.filter-group:before {
-  content: attr(data-name);
-}
-
 .filter-button {
   background-color: #9999EE66;
   border-radius: 2px;
