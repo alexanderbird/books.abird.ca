@@ -42,6 +42,9 @@ div.book-list
       div.book(
         data-category=book.Category || '__',
         data-location=book.Location || '__',
+        data-notes=book.Notes,
+        data-author=book.Author,
+        data-isbn=book.ISBN,
         style=`--book-color: ${book.Color};`
       )
         div.book__thumbnail

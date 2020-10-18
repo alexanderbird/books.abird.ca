@@ -22,14 +22,57 @@ function attachClickEvents() {
 }
 
 function showAndHideBooks(search) {
-  const searchExpressions = search.toLowerCase().split(' ');
+  const searchTerms = search.toLowerCase().split(' ')
+    .map(term => getSearchTerm(term));
   Array.from(document.querySelectorAll('.book'))
+    .map(book => new Book(book))
     .forEach(book => {
-      const bookEntryText = book.textContent.toLowerCase();
-      const showBook = searchExpressions.every(word => bookEntryText.indexOf(word) >= 0);
+      const showBook = searchTerms.every(term => term.matches(book));
       const hideBook = !showBook;
-      book.style.setProperty('--hidden-by-search', hideBook ? 'none' : 'unset');
+      book.element.style.setProperty('--hidden-by-search', hideBook ? 'none' : 'unset');
     });
+}
+
+class Book {
+  constructor(book) {
+    this.element = book;
+    this.lowerCaseText = book.textContent.toLowerCase();
+  }
+
+  getDataSetEntry(key) {
+    return this.element.dataset[key] || '';
+  }
+}
+
+function getSearchTerm(text) {
+  if (text.indexOf(':') >= 0) {
+    const [scope, search] = text.split(':');
+    return new ScopedSearchTerm(scope, search);
+  }
+  return new RegularSearchTerm(text);
+}
+
+class ScopedSearchTerm {
+  constructor(scope, search) {
+    this.scope = scope;
+    this.search = search;
+  }
+
+  matches(book) {
+    const value = book.getDataSetEntry(this.scope);
+    console.log({ value, search: this.search });
+    return value.toLowerCase().indexOf(this.search) >= 0;
+  }
+}
+
+class RegularSearchTerm {
+  constructor(search) {
+    this.search = search;
+  }
+
+  matches(book) {
+    return book.lowerCaseText.indexOf(this.search) >= 0;
+  }
 }
 
 function initializeSearchInput() {
