@@ -40,7 +40,7 @@ class Book {
   }
 
   getDataSetEntry(key) {
-    return this.element.dataset[key] || '';
+    return this.element.dataset[key.toLowerCase()] || '';
   }
 }
 
