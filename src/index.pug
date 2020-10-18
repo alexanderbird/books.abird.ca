@@ -27,7 +27,7 @@ div.filters
         data-filter-value=name,
         data-filter-selected='no'
       )=`${name} ${icon}`
-    if books.map(b => b.Location).some(location => !!location)
+    if books.map(b => b.Location).some(location => !location)
       button.filter-button(
         data-filter-type='location',
         data-filter-value='__',
@@ -47,28 +47,23 @@ div.book-list
         div.book__thumbnail
           if book.ISBN && book['Google ID']
             a(href=`https://books.google.ca/books?id=${book['Google ID']}`)
-              img(src=book.ISBN, alt="Thumbnail for " + book.Title)
+              img(src=book.ISBN, alt="Book cover photo for " + book.Title)
           else if book.ISBN
             img(src=book.ISBN, alt="Thumbnail for " + book.Title)
         h3.book__title= book.Title
         div.book__author= book.Author
         div.book__notes= book.Notes
-        div.book__location= locations[book.Location]
+        div.book__location(title=`Location: ${book.Location}`)= locations[book.Location]
 
 
 //- Generate CSS with a selector for each category filter:
 //- If any category filter is set, hide everything. If the book matches at least one of
 //- the selected filters, show it.
 style.
-  body[data-category]:not([data-category='']) .book-list .book {
-    --hidden-category: none;
-  }
-  body[data-location]:not([data-location='']) .book-list .book {
-    --hidden-location: none;
-  }
-  body[data-search]:not([data-search='']) .book-list .book {
-    --hidden-by-search: none;
-  }
+  /* use display: none to hide the element */
+  body[data-category]:not([data-category='']) .book-list .book { --hidden-category: none; }
+  body[data-location]:not([data-location='']) .book-list .book { --hidden-location: none; }
+  body[data-search]:not([data-search='']) .book-list .book     { --hidden-by-search: none; }
   .book {
     /* it is not hidden if the category doesn't hide it and the location doesn't hide it and the search doesn't hide it*/
     /* in other words, hide every book for which the location doesn't match or the category doesn't match or the search doesn't match*/

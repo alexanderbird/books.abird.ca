@@ -14,11 +14,20 @@
 }
 
 .search {
-  margin: 5px;
+  --margin: 5px;
+  --border-width: 1px;
+  margin: var(--margin);
   flex: 1;
+  border: var(--border-width) solid gray;
   border-radius: 10px;
   padding: 5px;
   box-shadow: none;
+}
+
+.search:focus {
+  outline: none;
+  border: calc(var(--border-width) + 2px) solid #7d7dff;
+  margin: calc(var(--margin) - 2px);
 }
 
 .filter-button[data-filter-selected='yes'] {
