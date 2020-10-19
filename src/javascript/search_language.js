@@ -1,5 +1,7 @@
 const searchLanguage = (function() {
+
   /* interface Expression {
+   *   constructor(text: String);
    *   matches(book: Book): boolean;
    * }
    */
@@ -12,14 +14,6 @@ const searchLanguage = (function() {
     matches(book) {
       return this.expressions.every(expression => expression.matches(book));
     }
-  }
-
-  function parseSingleSearchExpression(text) {
-    if (text.indexOf(':') >= 0) {
-      const [scope, search] = text.split(':');
-      return new ScopedSearchExpression(scope, search);
-    }
-    return new RegularSearchExpression(text);
   }
 
   class ScopedSearchExpression /* implements Expression */ {
@@ -48,11 +42,35 @@ const searchLanguage = (function() {
     matches() { return true; }
   }
 
-  function parseSearchExpressionList(expressionString) {
-    if (!expressionString) return new YesExpression();
-    const expressions = expressionString.toLowerCase().split(' ')
-      .map(expression => parseSingleSearchExpression(expression));
-    return new AndExpressionList(...expressions);
+  /* ---- */
+
+  class Rule {
+    constructor(pattern, expressionFactory) {
+      this.pattern = pattern;
+      this.expressionFactory = expressionFactory;
+    }
+  }
+
+  const listExpressionRules = [
+    new Rule(/^$/, () => new YesExpression()),
+    new Rule(/^.*$/, list => new AndExpressionList(...list.toLowerCase().split(' ')
+      .map(expression => parseSingleSearchExpression(expression))))
+  ];
+
+  function parseSearchExpressionList(expressionString = '') {
+    const text = expressionString.trim();
+    const rule = listExpressionRules.find(r => text.match(r.pattern));
+    return rule.expressionFactory(text);
+  }
+
+  const singleExpressionRules = [
+    new Rule(/[^:]+:[^:]+( |$)/, text => new ScopedSearchExpression(...text.split(':'))),
+    new Rule(/[^ ]+( |$)/, text => new RegularSearchExpression(text))
+  ];
+
+  function parseSingleSearchExpression(text) {
+    const rule = singleExpressionRules.find(r => text.match(r.pattern));
+    return rule.expressionFactory(text);
   }
 
   return {
