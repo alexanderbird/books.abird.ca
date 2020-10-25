@@ -13,7 +13,6 @@
     "build:data-merge-colors": "cat ./build/books.json | jq --arg opacity \"44\" --argfile colors ./data/colors.json \"$(cat data/colors_transform.jq)\" > ./build/books.json",
     "build:thumbnails": "cp data/thumbnails/* build",
     "build:src": "run-p build:src:*",
-    "build:src:javascript": "cat src/javascript/*.js > build/index.js",
     "build:src:typescript": "tsc --emitDeclarationOnly && webpack",
     "build:src:assets": "cp src/*.css build && cp -r src/box_labels/qr-codes build",
     "build:src:html--index": "pug src/index.pug --out build -O ./build/books.json",
