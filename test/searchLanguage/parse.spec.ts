@@ -47,6 +47,20 @@ describe('searchLanguage parser', () => {
     ]});
   });
 
+  xit('is permissive about whitespace', () => {
+    const parsed = parse('one     OR\t \ttwo   AND(three)');
+    expect(simplify(parsed)).toEqual('and(or(one two) three)');
+  });
+
+  xit('supports NOT', () => {
+    expect(parse('NOT foo')).toEqual({ type: 'not', value: { type: 'search', value: 'foo' } });
+  });
+
+  xit('has correct order of operations for NOT', () => {
+    const parsed = parse('NOT foo AND NOT apple anteater AND NOT eggs');
+    expect(simplify(parsed)).toEqual('and(not(foo) and(not(and(apple anteater) not(eggs))))');
+  });
+
   function simplify(parsed) {
     switch (parsed.type) {
       case 'and':
@@ -55,6 +69,8 @@ describe('searchLanguage parser', () => {
         return `or(${parsed.value.map(simplify).join(' ')})`;
       case 'search':
         return parsed.value;
+      case 'not':
+        return `not(${simplify(parsed.value)})`;
       default:
         return JSON.stringify(parsed);
     }
