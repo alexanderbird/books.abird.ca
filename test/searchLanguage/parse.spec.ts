@@ -1,4 +1,5 @@
 import { parse } from '../../src/typescript/searchLanguage/parse';
+import { simplify } from '../../src/typescript/searchLanguage/simpleSerializer';
 
 describe('searchLanguage parser', () => {
   it('parses one word search terms', () => {
@@ -53,11 +54,11 @@ describe('searchLanguage parser', () => {
   });
 
   it('supports NOT search', () => {
-    expect(parse('NOT foo')).toEqual({ type: 'not', value: { type: 'search', value: 'foo' } });
+    expect(parse('NOT (foo)')).toEqual({ type: 'not', value: { type: 'search', value: 'foo' } });
   });
 
   it('supports NOT scoped search', () => {
-    expect(parse('NOT foo:bar')).toEqual({ type: 'not', value: {
+    expect(parse('NOT (foo:bar)')).toEqual({ type: 'not', value: {
       type: 'scoped',
       value: {
         scope: 'foo',
@@ -66,23 +67,9 @@ describe('searchLanguage parser', () => {
     }});
   });
 
-  xit('has correct order of operations for NOT', () => {
-    const parsed = parse('NOT foo AND NOT apple anteater AND NOT eggs');
-    expect(simplify(parsed)).toEqual('and(not(foo) and(not(and(apple anteater) not(eggs))))');
+  it('has correct order of operations for NOT', () => {
+    const parsed = parse('(NOT(foo) AND NOT(apple)) OR NOT (one)');
+    expect(simplify(parsed)).toEqual('or(and(not(foo) not(apple)) not(one))');
   });
 
-  function simplify(parsed) {
-    switch (parsed.type) {
-      case 'and':
-        return `and(${parsed.value.map(simplify).join(' ')})`;
-      case 'or': 
-        return `or(${parsed.value.map(simplify).join(' ')})`;
-      case 'search':
-        return parsed.value;
-      case 'not':
-        return `not(${simplify(parsed.value)})`;
-      default:
-        return JSON.stringify(parsed);
-    }
-  }
 });
