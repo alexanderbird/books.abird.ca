@@ -30,9 +30,13 @@ const lexer = moo.compile({
 
 @{%
 
+  function stripQuotes(text) {
+    return text.match(/"(.*)"/)[1];
+  }
+
   const quotedWordSearchTermProcessor = ([ word ]) => ({
     type: 'search',
-    value: word.text.match(/"(.*)"/)[1]
+    value: stripQuotes(word.text)
   });
 
   const wordSearchTermProcessor = ([ word ]) => ({
@@ -45,6 +49,14 @@ const lexer = moo.compile({
     value: {
       scope: scope.text,
       search: search.text
+    }
+  });
+
+  const quotedScopedSearchTermProcessor = ([ scope, _, search ]) => ({
+    type: 'scoped',
+    value: {
+      scope: scope.text,
+      search: stripQuotes(search.text)
     }
   });
 
@@ -80,5 +92,7 @@ terminal ->
     scopedSearch {% id %}
   | wordSearch {% id %}
   | %quotedWord {% quotedWordSearchTermProcessor %}
-scopedSearch -> %word %colon %word {% scopedSearchTermProcessor %}
+scopedSearch -> 
+    %word %colon %word {% scopedSearchTermProcessor %}
+  | %word %colon %quotedWord {% quotedScopedSearchTermProcessor %}
 wordSearch -> %word {% wordSearchTermProcessor %}
