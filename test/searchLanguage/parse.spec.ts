@@ -40,10 +40,10 @@ describe('searchLanguage parser', () => {
     expect(simplify(parsed)).toEqual('or(or(one and(two three)) four)');
   });
 
-  xit('prioritizes quotes over everything', () => {
-    expect(parse('"one OR (two AND three) OR four" OR another')).toEqual({ type: 'or', value: [
+  it('prioritizes quotes over everything', () => {
+    expect(parse('"one OR (two AND three) OR four" OR "another:one"')).toEqual({ type: 'or', value: [
       { type: 'search', value: 'one OR (two AND three) OR four' },
-      { type: 'search', value: 'another' },
+      { type: 'search', value: 'another:one' },
     ]});
   });
 
