@@ -52,8 +52,18 @@ describe('searchLanguage parser', () => {
     expect(simplify(parsed)).toEqual('and(or(one two) three)');
   });
 
-  xit('supports NOT', () => {
+  it('supports NOT search', () => {
     expect(parse('NOT foo')).toEqual({ type: 'not', value: { type: 'search', value: 'foo' } });
+  });
+
+  it('supports NOT scoped search', () => {
+    expect(parse('NOT foo:bar')).toEqual({ type: 'not', value: {
+      type: 'scoped',
+      value: {
+        scope: 'foo',
+        search: 'bar'
+      }
+    }});
   });
 
   xit('has correct order of operations for NOT', () => {
