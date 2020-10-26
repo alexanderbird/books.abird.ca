@@ -62,12 +62,7 @@ const lexer = moo.compile({
     type: 'not',
     value: expression
   });
-
-  const emptyExpressionProcessor = () => ({ type: 'yes' });
 %}
-main ->
-    _  {% emptyExpressionProcessor %}
-  | expression {% id %}
 expression -> 
     secondOrderOfOperation {% id %}
   | thirdOrderOfOperation {% id %}

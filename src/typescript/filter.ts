@@ -24,7 +24,7 @@ function initializeFilterButtons() {
 }
 
 function updateFilterFromUrlHash() {
-  const hash = location.hash.replace(/^#/, '');
+  const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
   if (!hash) {
     (Array.from(document.querySelectorAll(`.filter-button`)) as any[] as HTMLElement[])
       .forEach((button: HTMLElement) => {
@@ -36,6 +36,10 @@ function updateFilterFromUrlHash() {
   const entries = hash.split(';');
   entries.forEach(entry => {
     const [ key, valuesString ] = entry.split('=');
+    if (key === 'search') {
+      document.body.dataset[key] = valuesString;
+      return;
+    }
     const values = valuesString.split(',');
 
     document.body.dataset[key] = values.join(' ');

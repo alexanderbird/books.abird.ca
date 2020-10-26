@@ -10,6 +10,10 @@ describe('searchLanguage parser', () => {
     expect(parse('hello')).toEqual({ type: 'search', value: 'hello' });
   });
 
+  it('parses quoted search terms', () => {
+    expect(parse('"hello, world"')).toEqual({ type: 'search', value: 'hello, world' });
+  });
+
   it('parses scoped search terms', () => {
     expect(parse('foo:bar')).toEqual({ type: 'scoped', value: { scope: 'foo', search: 'bar' } });
   });
