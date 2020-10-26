@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf build && mkdir -p build",
-    "build": "run-s clean test:unit build:* test:html",
+    "build": "run-s clean build:src:nearley test:unit build:* test:html",
     "build:mkdir": "mkdir -p build",
     "build:sanitize-csv:1": "tr -d '\\015' <data/books.csv >/tmp/data-books.csv",
     "build:sanitize-csv:2": "mv /tmp/data-books.csv data/books.csv",
