@@ -36,6 +36,15 @@ div.filters
   div.filter-group
     span.filter-group__label='Search'
     input.search(type='search',placeholder='Search titles, authors, and notes')
+    div.search-help
+      div='Example search expressions:'
+      ul
+        li
+          code='"In, But Not Of"'
+        li
+          code='NOT (category:Practical)'
+        li
+          code='"university physics" OR (category:Stories AND NOT(location:Missing) AND title:the AND NOT (notes:Alex) AND author:Patrick)'
   div.search-summary(title='Visualization of the last valid search')
 div.book-list
   each book in books
