@@ -92,7 +92,7 @@ class ScopedSearchExpression implements Expression {
   toHtml() {
     return `
       <span class='search-term search-term__leaf'>
-        ${this.scope}=${this.search}
+        ${this.scope} &asymp; ${this.search}
       </span>
     `;
   }
