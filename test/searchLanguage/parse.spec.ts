@@ -47,7 +47,7 @@ describe('searchLanguage parser', () => {
     ]});
   });
 
-  xit('is permissive about whitespace', () => {
+  it('is permissive about whitespace', () => {
     const parsed = parse('one     OR\t \ttwo   AND(three)');
     expect(simplify(parsed)).toEqual('and(or(one two) three)');
   });

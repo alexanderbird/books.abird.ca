@@ -4,7 +4,7 @@ const moo = require("moo");
 
 let and: any;
 let or: any;
-let space: any;
+let _: any;
 let colon: any;
 let word: any;
 let quotedWord: any;
@@ -14,9 +14,9 @@ let rParen: any;
 const lexer = moo.compile({
   quotedWord: /"[^"\n]+"/,
   word:       /[^\s:)(]+/,
-  and:        / AND /,
-  or:         / OR /,
-  space:      / /,
+  and:        /[ \t]*AND[ \t]*/,
+  or:         /[ \t]*OR[ \t]*/,
+  _:          /[ \t]+/,
   colon:      /:/,
   lParen:     /\(/,
   rParen:     /\)/,
@@ -66,7 +66,7 @@ secondOrderOfOperation ->
   | secondOrderOfOperation %or firstOrderOfOpereration {% orSearchExpressionProcessor %}
 thirdOrderOfOperation ->
     expression %and expression {% andSearchExpressionProcessor %}
-  | expression %space expression {% andSearchExpressionProcessor %}
+  | expression %_ expression {% andSearchExpressionProcessor %}
 terminal -> 
     scopedSearch {% id %}
   | wordSearch {% id %}
