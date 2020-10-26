@@ -47,18 +47,20 @@ const lexer = moo.compile({
     value: [left, right]
   });
 %}
-searchExpression -> 
-    orSearchExpression {% id %}
-  | searchExpression %and searchExpression {% andSearchExpressionProcessor %}
-  | searchExpression %space searchExpression {% andSearchExpressionProcessor %}
-orSearchExpression ->
-    searchTermExpression {% id %}
-  | orSearchExpression %or searchTermExpression {% orSearchExpressionProcessor %}
-searchTermExpression ->
-    searchTerm {% id %}
-  | %lParen searchExpression %rParen {% ([_, expression, __]) => expression %}
-searchTerm -> 
-    scopedSearchTerm {% id %}
-  | wordSearchTerm {% id %}
-scopedSearchTerm -> %word %colon %word {% scopedSearchTermProcessor %}
-wordSearchTerm -> %word {% wordSearchTermProcessor %}
+expression -> 
+    secondOrderOfOperation {% id %}
+  | thirdOrderOfOperation {% id %}
+firstOrderOfOpereration ->
+    terminal {% id %}
+  | %lParen expression %rParen {% ([_, expression, __]) => expression %}
+secondOrderOfOperation ->
+    firstOrderOfOpereration {% id %}
+  | secondOrderOfOperation %or firstOrderOfOpereration {% orSearchExpressionProcessor %}
+thirdOrderOfOperation ->
+    expression %and expression {% andSearchExpressionProcessor %}
+  | expression %space expression {% andSearchExpressionProcessor %}
+terminal -> 
+    scopedSearch {% id %}
+  | wordSearch {% id %}
+scopedSearch -> %word %colon %word {% scopedSearchTermProcessor %}
+wordSearch -> %word {% wordSearchTermProcessor %}
