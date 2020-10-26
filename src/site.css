@@ -59,6 +59,10 @@
   background-blend-mode: lighten;
 }
 
+.search-summary > .search-term {
+  border-width: 0;
+}
+
 .search-summary > .search-term__leaf {
   /* if the summary is this simple, there's no need to show it */
   display: none;
