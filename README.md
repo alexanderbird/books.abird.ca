@@ -50,3 +50,8 @@ colors.json
 
 If you edit `src/box_labels.books.json`, re-run `npm run generate-qr-codes` to
 update the QR codes to match the new box list.
+
+## CI setup
+
+Use `npm run ci-build` to build everything except the Nearley grammar for
+parsing search. That's committed to git so it's optional to build it.

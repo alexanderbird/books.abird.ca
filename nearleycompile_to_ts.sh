@@ -14,6 +14,8 @@ set -e
 }
 
 cat <<EOT > /tmp/nearley.header.ts
+// Edit the imports (top) and post-processing/exports (bottom) in nearleycompile_to_ts.sh
+// Edit the grammar in src/searchDSL.ne
 import nearley from 'nearley';
 import { simplify } from './simpleSerializer';
 EOT

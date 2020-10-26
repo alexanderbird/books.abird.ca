@@ -7,6 +7,7 @@
     "clean": "rimraf build && mkdir -p build",
     "prebuild:nearley": "./nearleycompile_to_ts.sh src/searchDSL.ne src/typescript/searchLanguage/parse.ts",
     "build": "run-s clean prebuild:nearley test:unit build:* test:html",
+    "ci-build": "run-s clean test:unit build:* test:html",
     "build:mkdir": "mkdir -p build",
     "build:sanitize-csv:1": "tr -d '\\015' <data/books.csv >/tmp/data-books.csv",
     "build:sanitize-csv:2": "mv /tmp/data-books.csv data/books.csv",
