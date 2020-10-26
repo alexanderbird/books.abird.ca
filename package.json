@@ -25,7 +25,7 @@
     "dev": "run-p watch start",
     "watch": "run-p watch:*",
     "watch:data": "nodemon --watch data --ext '*' --exec 'npm run build'",
-    "watch:src": "nodemon --on-change-only --watch src --ext '*' --exec 'npm run build:src'",
+    "watch:src": "nodemon --on-change-only --watch src --ext '*' --ignore src/typescript/searchLanguage/parse.ts --exec 'npm run build:src'",
     "search": "search/search_by_ip.sh",
     "generate-color-map": "ls data/thumbnails/ | xargs -n 1 data/average_color.sh | jq --slurp 'add' > ./data/colors.json",
     "generate-qr-codes": "./src/box_labels/generate_qr_codes.sh 'https://books.abird.ca/' 'src/box_labels/qr-codes'"
