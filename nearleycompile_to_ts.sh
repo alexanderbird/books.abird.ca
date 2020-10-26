@@ -13,7 +13,11 @@ set -e
   exit 1
 }
 
-echo "const nearley = require('nearley');" > /tmp/nearley.header.ts
+cat <<EOT > /tmp/nearley.header.ts
+import nearley from 'nearley';
+import { simplify } from './simpleSerializer';
+EOT
+
 npx --no-install nearleyc $input \
   | sed "3d;5s/^var/const/" \
   | grep -B 99999999999999 "if (typeof module !== 'undefined" \
@@ -29,7 +33,10 @@ export function parse(query: string) {
     throw new Error('Failed to parse. \n' + query);
   }
   if (nearleyParser.results.length > 1) {
-    throw new Error('Bad bad bad. Grammar is ambiguous -- query has multiple valid interpretations:\n' + query);
+    const summary = 'Bad bad bad. Grammar is ambiguous -- query has multiple valid interpretations';
+    const details = nearleyParser.results.map(simplify).map(x => '  - ' + x).join('\n');
+    const message = summary + ':\n' + query + '\n' + details;
+    throw new Error(message);
   }
   return nearleyParser.results[0];
 }

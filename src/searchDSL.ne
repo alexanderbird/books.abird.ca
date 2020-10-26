@@ -47,34 +47,34 @@ const lexer = moo.compile({
     }
   });
 
-  const andSearchExpressionProcessor = ([left, _, right]) => ({
+  const andExpressionProcessor = ([left, _, right]) => ({
     type: 'and',
     value: [left, right]
   });
 
-  const orSearchExpressionProcessor = ([left, _, right]) => ({
+  const orExpressionProcessor = ([left, _, right]) => ({
     type: 'or',
     value: [left, right]
   });
 
-  const notSearchExpressionProcessor = ([_, expression]) => ({
+  const notExpressionProcessor = ([_, __, expression, ___]) => ({
     type: 'not',
     value: expression
   });
 %}
 expression -> 
-    %not expression {% notSearchExpressionProcessor %}
-  | secondOrderOfOperation {% id %}
+    secondOrderOfOperation {% id %}
   | thirdOrderOfOperation {% id %}
 firstOrderOfOpereration ->
     terminal {% id %}
+  | %not %lParen expression %rParen {% notExpressionProcessor %}
   | %lParen expression %rParen {% ([_, expression, __]) => expression %}
 secondOrderOfOperation ->
     firstOrderOfOpereration {% id %}
-  | secondOrderOfOperation %or firstOrderOfOpereration {% orSearchExpressionProcessor %}
+  | secondOrderOfOperation %or firstOrderOfOpereration {% orExpressionProcessor %}
 thirdOrderOfOperation ->
-    expression %and expression {% andSearchExpressionProcessor %}
-  | expression %_ expression {% andSearchExpressionProcessor %}
+    expression %and expression {% andExpressionProcessor %}
+  | expression %_ expression {% andExpressionProcessor %}
 terminal -> 
     scopedSearch {% id %}
   | wordSearch {% id %}
