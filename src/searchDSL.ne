@@ -4,6 +4,7 @@ const moo = require("moo");
 
 let and: any;
 let or: any;
+let not: any;
 let _: any;
 let colon: any;
 let word: any;
@@ -13,9 +14,10 @@ let rParen: any;
 
 const lexer = moo.compile({
   quotedWord: /"[^"\n]+"/,
-  word:       /[^\s:)(]+/,
   and:        /[ \t]*AND[ \t]*/,
   or:         /[ \t]*OR[ \t]*/,
+  not:        /[ \t]*NOT[ \t]*/,
+  word:       /[^\s:)(]+/,
   _:          /[ \t]+/,
   colon:      /:/,
   lParen:     /\(/,
@@ -54,9 +56,15 @@ const lexer = moo.compile({
     type: 'or',
     value: [left, right]
   });
+
+  const notSearchExpressionProcessor = ([_, expression]) => ({
+    type: 'not',
+    value: expression
+  });
 %}
 expression -> 
-    secondOrderOfOperation {% id %}
+    %not expression {% notSearchExpressionProcessor %}
+  | secondOrderOfOperation {% id %}
   | thirdOrderOfOperation {% id %}
 firstOrderOfOpereration ->
     terminal {% id %}
