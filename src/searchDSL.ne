@@ -7,23 +7,31 @@ let or: any;
 let space: any;
 let colon: any;
 let word: any;
+let quotedWord: any;
 let lParen: any;
 let rParen: any;
 
 const lexer = moo.compile({
-  and:    / AND /,
-  or:     / OR /,
-  space:  / /,
-  colon:  /:/,
-  word:   /[^\s:)(]+/,
-  lParen: /\(/,
-  rParen: /\)/,
+  quotedWord: /"[^"\n]+"/,
+  word:       /[^\s:)(]+/,
+  and:        / AND /,
+  or:         / OR /,
+  space:      / /,
+  colon:      /:/,
+  lParen:     /\(/,
+  rParen:     /\)/,
 });
 %}
 
 @lexer lexer
 
 @{%
+
+  const quotedWordSearchTermProcessor = ([ word ]) => ({
+    type: 'search',
+    value: word.text.match(/"(.*)"/)[1]
+  });
+
   const wordSearchTermProcessor = ([ word ]) => ({
     type: 'search',
     value: word.text
@@ -62,5 +70,6 @@ thirdOrderOfOperation ->
 terminal -> 
     scopedSearch {% id %}
   | wordSearch {% id %}
+  | %quotedWord {% quotedWordSearchTermProcessor %}
 scopedSearch -> %word %colon %word {% scopedSearchTermProcessor %}
 wordSearch -> %word {% wordSearchTermProcessor %}
