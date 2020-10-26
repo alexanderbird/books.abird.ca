@@ -1,3 +1,5 @@
+// Edit the imports (top) and post-processing/exports (bottom) in nearleycompile_to_ts.sh
+// Edit the grammar in src/searchDSL.ne
 import nearley from 'nearley';
 import { simplify } from './simpleSerializer';
 // Generated automatically by nearley, version 2.19.7
@@ -62,8 +64,6 @@ const lexer = moo.compile({
     type: 'not',
     value: expression
   });
-
-  const emptyExpressionProcessor = () => ({ type: 'yes' });
 var grammar = {
     Lexer: lexer,
     ParserRules: [
@@ -74,8 +74,6 @@ var grammar = {
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", "wschar"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": function(d) {return null;}},
     {"name": "wschar", "symbols": [/[ \t\n\v\f]/], "postprocess": id},
-    {"name": "main", "symbols": ["_"], "postprocess": emptyExpressionProcessor},
-    {"name": "main", "symbols": ["expression"], "postprocess": id},
     {"name": "expression", "symbols": ["secondOrderOfOperation"], "postprocess": id},
     {"name": "expression", "symbols": ["thirdOrderOfOperation"], "postprocess": id},
     {"name": "firstOrderOfOpereration", "symbols": ["terminal"], "postprocess": id},
@@ -91,10 +89,11 @@ var grammar = {
     {"name": "scopedSearch", "symbols": [(lexer.has("word") ? {type: "word"} : word), (lexer.has("colon") ? {type: "colon"} : colon), (lexer.has("word") ? {type: "word"} : word)], "postprocess": scopedSearchTermProcessor},
     {"name": "wordSearch", "symbols": [(lexer.has("word") ? {type: "word"} : word)], "postprocess": wordSearchTermProcessor}
 ]
-  , ParserStart: "main"
+  , ParserStart: "expression"
 }
 
 export function parse(query: string, options: { ignoreAmbiguity?: boolean } = {}) {
+  if (query.match(/^\s*$/)) { return { type: 'yes' }; }
   const nearleyParser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
   nearleyParser.feed(query);
   if (nearleyParser.results.length < 1) {

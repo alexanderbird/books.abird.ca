@@ -29,6 +29,7 @@ npx --no-install nearleyc $input \
 cat <<EOT > /tmp/nearley.footer.ts
 
 export function parse(query: string, options: { ignoreAmbiguity?: boolean } = {}) {
+  if (query.match(/^\s*$/)) { return { type: 'yes' }; }
   const nearleyParser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
   nearleyParser.feed(query);
   if (nearleyParser.results.length < 1) {

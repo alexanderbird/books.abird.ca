@@ -106,7 +106,7 @@ class RegularSearchExpression implements Expression {
   }
 
   matches(book) {
-    return book.lowerCaseText.indexOf(this.search) >= 0;
+    return book.lowerCaseText.indexOf(this.search.toLowerCase()) >= 0;
   }
 
   toString() { return this.search; }

@@ -1,5 +1,8 @@
+function listify(key, value) {
+  return key === 'search' ? value : value.replace(/ /g, ',');
+}
 export function serializeBodyDataset(dataset) {
-  return Object.entries(document.body.dataset)
-    .map(([ key, value ]) => `${key}=${value && value.replace(/ /g, ',')}`)
-    .join(';');
+  return encodeURIComponent(Object.entries(document.body.dataset)
+    .map(([ key, value ]) => `${key}=${value && listify(key, value)}`)
+    .join(';'));
 }
