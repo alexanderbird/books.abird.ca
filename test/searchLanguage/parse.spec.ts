@@ -29,4 +29,34 @@ describe('searchLanguage parser', () => {
       { type: 'search', value: 'world' },
     ]});
   });
+
+  it('prioritizes AND over OR', () => {
+    const parsed = parse('one OR two AND three OR four');
+    expect(simplify(parsed)).toEqual('and(or(one two) or(three four))');
+  });
+
+  it('prioritizes parentheses over AND', () => {
+    const parsed = parse('one OR (two AND three) OR four');
+    expect(simplify(parsed)).toEqual('or(or(one and(two three)) four)');
+  });
+
+  xit('prioritizes quotes over everything', () => {
+    expect(parse('"one OR (two AND three) OR four" OR another')).toEqual({ type: 'or', value: [
+      { type: 'search', value: 'one OR (two AND three) OR four' },
+      { type: 'search', value: 'another' },
+    ]});
+  });
+
+  function simplify(parsed) {
+    switch (parsed.type) {
+      case 'and':
+        return `and(${parsed.value.map(simplify).join(' ')})`;
+      case 'or': 
+        return `or(${parsed.value.map(simplify).join(' ')})`;
+      case 'search':
+        return parsed.value;
+      default:
+        return JSON.stringify(parsed);
+    }
+  }
 });

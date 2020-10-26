@@ -7,13 +7,17 @@ let or: any;
 let space: any;
 let colon: any;
 let word: any;
+let lParen: any;
+let rParen: any;
 
 const lexer = moo.compile({
   and:    / AND /,
   or:     / OR /,
   space:  / /,
   colon:  /:/,
-  word:   /[^\s:]+/
+  word:   /[^\s:)(]+/,
+  lParen: /\(/,
+  rParen: /\)/,
 });
 %}
 
@@ -44,10 +48,15 @@ const lexer = moo.compile({
   });
 %}
 searchExpression -> 
+    orSearchExpression {% id %}
+  | searchExpression %and searchExpression {% andSearchExpressionProcessor %}
+  | searchExpression %space searchExpression {% andSearchExpressionProcessor %}
+orSearchExpression ->
+    searchTermExpression {% id %}
+  | orSearchExpression %or searchTermExpression {% orSearchExpressionProcessor %}
+searchTermExpression ->
     searchTerm {% id %}
-  | searchTerm %and searchExpression {% andSearchExpressionProcessor %}
-  | searchTerm %or searchExpression {% orSearchExpressionProcessor %}
-  | searchTerm %space searchExpression {% andSearchExpressionProcessor %}
+  | %lParen searchExpression %rParen {% ([_, expression, __]) => expression %}
 searchTerm -> 
     scopedSearchTerm {% id %}
   | wordSearchTerm {% id %}
