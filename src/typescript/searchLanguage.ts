@@ -1,3 +1,4 @@
+import * as experimental from './searchLanguage/index';
 import { Book } from './book';
 
 interface Expression {
@@ -140,4 +141,4 @@ const listItemRules = [
   new Rule(/([^ ]+)( |$)/,       (_, text) => new RegularSearchExpression(text))
 ];
 
-export const parse = parseListParent;
+export const parse = window.location.search.match(/experiment/) ? experimental.parse : parseListParent;
