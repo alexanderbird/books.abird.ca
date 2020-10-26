@@ -18,6 +18,10 @@ describe('searchLanguage parser', () => {
     expect(parse('foo:bar')).toEqual({ type: 'scoped', value: { scope: 'foo', search: 'bar' } });
   });
 
+  it('parses scoped search terms with quoted search terms', () => {
+    expect(parse('foo:"bar baz quux!"')).toEqual({ type: 'scoped', value: { scope: 'foo', search: 'bar baz quux!' } });
+  });
+
   it('parses multi-word search terms as an and expression', () => {
     expect(parse('hello world')).toEqual({ type: 'and', value: [
       { type: 'search', value: 'hello' },
