@@ -84,7 +84,7 @@ class ScopedSearchExpression implements Expression {
 
   matches(book) {
     const value = book.getDataSetEntry(this.scope);
-    return value.toLowerCase().indexOf(this.search) >= 0;
+    return value.toLowerCase().indexOf(this.search.toLowerCase()) >= 0;
   }
 
   toString() { return `${this.scope}:${this.search}`; }
