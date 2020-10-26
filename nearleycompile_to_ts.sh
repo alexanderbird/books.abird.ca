@@ -26,13 +26,13 @@ npx --no-install nearleyc $input \
 
 cat <<EOT > /tmp/nearley.footer.ts
 
-export function parse(query: string) {
+export function parse(query: string, options: { ignoreAmbiguity?: boolean } = {}) {
   const nearleyParser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
   nearleyParser.feed(query);
   if (nearleyParser.results.length < 1) {
     throw new Error('Failed to parse. \n' + query);
   }
-  if (nearleyParser.results.length > 1) {
+  if (!options.ignoreAmbiguity && nearleyParser.results.length > 1) {
     const summary = 'Bad bad bad. Grammar is ambiguous -- query has multiple valid interpretations';
     const details = nearleyParser.results.map(simplify).map(x => '  - ' + x).join('\n');
     const message = summary + ':\n' + query + '\n' + details;

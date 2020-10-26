@@ -2,6 +2,10 @@ import { parse } from '../../src/typescript/searchLanguage/parse';
 import { simplify } from '../../src/typescript/searchLanguage/simpleSerializer';
 
 describe('searchLanguage parser', () => {
+  it('accepts empty strings', () => {
+    expect(parse('')).toEqual({ type: 'yes' });
+  });
+
   it('parses one word search terms', () => {
     expect(parse('hello')).toEqual({ type: 'search', value: 'hello' });
   });

@@ -1,34 +1,55 @@
 import { Book } from '../book';
 import * as parser from './parse';
 
-interface Expression {
+export interface Expression {
   matches(book: Book): boolean;
+  toHtml(): string;
 }
 
 class AndExpressionList implements Expression {
   private expressions: Expression[];
-  constructor(...expressions) {
-    this.expressions = expressions;
+  constructor(left: Expression, right: Expression) {
+    this.expressions = [left, right];
   }
 
   matches(book) {
     return this.expressions.every(expression => expression.matches(book));
   }
 
-  toString() { return this.expressions.length > 1 ? `AND(${this.expressions.join(',')})` : this.expressions.length[0]; }
+  toString() { return `${this.expressions[0]} AND ${this.expressions[1]}`; }
+
+  toHtml() {
+    return `
+      <div class='search-term'>
+        ${this.expressions[0].toHtml()}
+        <span class='search-term__label'>AND</span>
+        ${this.expressions[1].toHtml()}
+      </div>
+    `;
+  }
 }
 
 class OrExpressionList implements Expression {
   private expressions: Expression[];
-  constructor(...expressions) {
-    this.expressions = expressions;
+  constructor(left: Expression, right: Expression) {
+    this.expressions = [left, right];
   }
 
   matches(book) {
     return this.expressions.some(expression => expression.matches(book));
   }
 
-  toString() { return this.expressions.length > 1 ? `OR(${this.expressions.join(',')})` : this.expressions.length[0]; }
+  toString() { return `${this.expressions[0]} OR ${this.expressions[1]}`; }
+
+  toHtml() {
+    return `
+      <div class='search-term'>
+        ${this.expressions[0].toHtml()}
+        <span class='search-term__label'>OR</span>
+        ${this.expressions[1].toHtml()}
+      </div>
+    `;
+  }
 }
 
 class NotExpressionList implements Expression {
@@ -41,7 +62,16 @@ class NotExpressionList implements Expression {
     return !this.expression.matches(book);
   }
 
-  toString() { return `NOT(${this.expression})`; }
+  toString() { return `NOT (${this.expression})`; }
+
+  toHtml() {
+    return `
+      <div class='search-term'>
+        <span class='search-term__label'>NOT</span>
+        ${this.expression.toHtml()}
+      </div>
+    `;
+  }
 }
 
 class ScopedSearchExpression implements Expression {
@@ -58,6 +88,14 @@ class ScopedSearchExpression implements Expression {
   }
 
   toString() { return `${this.scope}:${this.search}`; }
+
+  toHtml() {
+    return `
+      <span class='search-term search-term__leaf'>
+        ${this.scope}=${this.search}
+      </span>
+    `;
+  }
 }
 
 class RegularSearchExpression implements Expression {
@@ -72,18 +110,27 @@ class RegularSearchExpression implements Expression {
   }
 
   toString() { return this.search; }
+
+  toHtml() {
+    return `
+      <span class='search-term search-term__leaf'>${this.search}</span>
+    `;
+  }
 }
 
 class YesExpression implements Expression {
   matches() { return true; }
+  toHtml() { return ''; }
 }
 
 function objectify(parsed) {
   switch (parsed.type) {
+    case 'yes':
+      return new YesExpression();
     case 'and':
-      return new AndExpressionList(parsed.value.map(objectify));
+      return new AndExpressionList(...parsed.value.map(objectify) as any as [Expression, Expression]);
     case 'or': 
-      return new OrExpressionList(parsed.value.map(objectify));
+      return new OrExpressionList(...parsed.value.map(objectify) as any as [Expression, Expression]);
     case 'not':
       return new NotExpressionList(objectify(parsed.value));
     case 'search':
@@ -97,5 +144,5 @@ function objectify(parsed) {
 
 
 export function parse(search: string): Expression {
-  return objectify(parser.parse(search));
+  return objectify(parser.parse(search, { ignoreAmbiguity: true }));
 }

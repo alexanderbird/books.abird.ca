@@ -1,12 +1,9 @@
 import * as state from './state';
-import * as searchLanguage from './searchLanguage';
+import { parse, Expression } from './searchLanguage';
 import { Book } from './book';
 
-function showAndHideBooks(search) {
-  const searchExpression = searchLanguage.parse(search);
-  if (!searchExpression) {
-    throw new Error(`Failed to parse ${search}`);
-  }
+function showAndHideBooks(searchExpression: Expression) {
+  (document.querySelector('.search-summary') as any as HTMLElement).innerHTML = searchExpression.toHtml();
   Array.from(document.querySelectorAll('.book'))
     .map(book => new Book(book))
     .forEach(book => {
@@ -17,16 +14,34 @@ function showAndHideBooks(search) {
 }
 
 function initializeSearchInput() {
+  let lastGoodSearch = { expression: parse(''), text: '' };
   const searchInput = document.querySelector('.search') as HTMLInputElement;
   searchInput.value = document.body.dataset.search || '';
   searchInput.addEventListener('keyup', () => {
     const search = searchInput.value.trim();
-    showAndHideBooks(search);
-    document.body.dataset.search = search;
+    const expression = tryParse(search);
+    if (expression) {
+      lastGoodSearch = { expression, text: search };
+      searchInput.dataset.isValid = 'yes';
+    } else {
+      searchInput.dataset.isValid = 'no';
+    }
+
+    showAndHideBooks(lastGoodSearch.expression);
+    document.body.dataset.search = lastGoodSearch.text;
     window.location.hash = '#' + state.serializeBodyDataset(document.body.dataset);
   });
 
-  showAndHideBooks(searchInput.value.trim());
+  showAndHideBooks(parse(searchInput.value.trim()));
+}
+
+function tryParse(search: string): Expression | false {
+  try {
+    return parse(search);
+  } catch(e) {
+    console.info(e.message);
+    return false;
+  }
 }
 
 export const initialize = initializeSearchInput;
