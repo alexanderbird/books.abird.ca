@@ -84,4 +84,15 @@ describe('searchLanguage parser', () => {
     expect(simplify(parsed)).toEqual('or(and(not(foo) not(apple)) not(one))');
   });
 
+  it('accepts any casing of the AND operator', () => {
+    const actual = simplify(parse('((one AND two) and three) And (four aNd five)'));
+    const expected = simplify(parse('((one AND two) AND three) AND (four AND five)'));
+    expect(actual).toEqual(expected);
+  });
+
+  it('accepts any casing of the OR operator', () => {
+    const actual = simplify(parse('((one OR two) or three) Or (four oR five)'));
+    const expected = simplify(parse('((one OR two) OR three) OR (four OR five)'));
+    expect(actual).toEqual(expected);
+  });
 });

@@ -20,8 +20,8 @@ let rParen: any;
 
 const lexer = moo.compile({
   quotedWord: /"[^"\n]+"/,
-  and:        /[ \t]*AND[ \t]*/,
-  or:         /[ \t]*OR[ \t]*/,
+  and:        /[ \t]*[Aa][Nn][Dd][ \t]*/,
+  or:         /[ \t]*[Oo][Rr][ \t]*/,
   not:        /[ \t]*NOT[ \t]*/,
   word:       /[^\s:)(]+/,
   _:          /[ \t]+/,
