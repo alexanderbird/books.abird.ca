@@ -5,12 +5,17 @@
   align-items: center;
 }
 
+.filter-reset-button,
 .filter-button {
   background-color: #9999EE66;
   border-radius: 2px;
   margin: 5px;
   padding: 5px;
   border: 0;
+}
+
+.filter-reset-button:after {
+  content: '\00293e';
 }
 
 .search {

@@ -17,6 +17,7 @@ div.filters
         data-filter-value=category || '__',
         data-filter-selected='no'
       )=category || 'None'
+    button.filter-reset-button(data-filter-reset-type='category')
   div.filter-group
     span.filter-group__label='Location'
     each location in Object.entries(locations)
@@ -33,6 +34,7 @@ div.filters
         data-filter-value='__',
         data-filter-selected='no'
       )='None'
+    button.filter-reset-button(data-filter-reset-type='location')
   div.filter-group
     span.filter-group__label='Search'
     input.search(type='search',placeholder='Search titles, authors, and notes')

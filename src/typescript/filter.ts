@@ -21,6 +21,17 @@ function initializeFilterButtons() {
       history.pushState(null, null as any as string, '#' + state.serializeBodyDataset(document.body.dataset));
     });
   });
+  (Array.from(document.querySelectorAll('.filter-reset-button')) as any[] as HTMLElement[]).forEach((button: HTMLElement) => {
+    button.addEventListener('click', () => {
+      const filterType = button.dataset.filterResetType;
+      const buttonsToClear = `[data-filter-type='${filterType}'][data-filter-selected='yes']`;
+      (Array.from(document.querySelectorAll(buttonsToClear)) as any[] as HTMLElement[]).forEach((selectedButton: HTMLElement) => {
+        selectedButton.dataset.filterSelected = 'no';
+      });
+      document.body.dataset[filterType || ''] = '';
+      history.pushState(null, null as any as string, '#' + state.serializeBodyDataset(document.body.dataset));
+    });
+  });
 }
 
 function updateFilterFromUrlHash() {
