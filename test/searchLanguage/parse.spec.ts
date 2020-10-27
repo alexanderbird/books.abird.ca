@@ -95,4 +95,10 @@ describe('searchLanguage parser', () => {
     const expected = simplify(parse('((one OR two) OR three) OR (four OR five)'));
     expect(actual).toEqual(expected);
   });
+
+  it('accepts any casing of the NOT operator', () => {
+    const actual = simplify(parse('(NOT(one) OR not(two)) OR (Not(three) OR nOT(four))'));
+    const expected = simplify(parse('(NOT(one) OR NOT(two)) OR (NOT(three) OR NOT(four))'));
+    expect(actual).toEqual(expected);
+  });
 });
