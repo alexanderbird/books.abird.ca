@@ -22,7 +22,7 @@ const lexer = moo.compile({
   quotedWord: /"[^"\n]+"/,
   and:        /[ \t]*[Aa][Nn][Dd][ \t]*/,
   or:         /[ \t]*[Oo][Rr][ \t]*/,
-  not:        /[ \t]*NOT[ \t]*/,
+  not:        /[ \t]*[Nn][Oo][Tt][ \t]*/,
   word:       /[^\s:)(]+/,
   _:          /[ \t]+/,
   colon:      /:/,
