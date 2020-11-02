@@ -2,11 +2,11 @@
   {
     "slug": "jamie-series",
     "name": "Little House & Jamie Series",
-    "path": "#search%3D(category%3ALittle-House OR author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
+    "hash": "search%3D(category%3ALittle-House OR author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
   },
   {
     "slug": "youth",
     "name": "Stories for Kids/Youth",
-    "path": "#category%3DOther%2CYouth-Stories%3Bsearch%3DNOT (author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
+    "hash": "category%3DOther%2CYouth-Stories%3Bsearch%3DNOT (author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
   }
 ] }
