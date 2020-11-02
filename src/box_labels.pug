@@ -35,7 +35,8 @@ style.
     margin-bottom: auto;
   }
 
-each box in boxes
+each box in Object.entries(boxes)
+  - const [id,info] = box
   div.box-label
-    img.box-label__qr-code(src=`/qr-codes/${box.slug}.png`)
-    h4.box-label__text=box.name
+    img.box-label__qr-code(src=`/qr-codes/box-${id}.png`)
+    h4.box-label__text=info.name

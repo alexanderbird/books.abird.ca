@@ -7,9 +7,9 @@ outpath="$2"
 rm -r "./$outpath" || :
 mkdir -p "./$outpath"
 
-cat src/box_labels/boxes.json \
+cat data/boxes.json \
   | jq -r \
       --arg url "$url" \
       --arg outpath $outpath \
-      ".boxes[] | \"echo 'generating QR code \" + .slug + \"' && qrencode -o \" + \$outpath + \"/\" + .slug + \".png \\\"\" + \$url + \"#\" + .hash + \"\\\"\"" \
+      "$(cat data/box_labels_schema.jq)" \
   | bash

@@ -1,0 +1,15 @@
+{
+  "boxes": {
+    "1": {
+      "name": "Kid's/Youth Book Series"
+    },
+    "2": {
+      "name": "Kid's/Youth Books"
+    }
+  },
+  "boxCategories": {
+    "Youth-Series": "1",
+    "Youth-Stories": "2",
+    "Other": "2"
+  }
+}
