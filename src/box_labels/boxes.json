@@ -1,32 +1,12 @@
 { "boxes": [
   {
-    "slug": "engg",
-    "name": "Engineering",
-    "path": "category=Engineering;location=Archive"
-  },
-  {
-    "slug": "ideas",
-    "name": "History and Philosophy",
-    "path": "category=History,Philosophy;location=Archive"
-  },
-  {
-    "slug": "practical",
-    "name": "Practical",
-    "path": "category=Practical;location=Archive"
-  },
-  {
-    "slug": "stories",
-    "name": "Stories",
-    "path": "category=Stories;location=Archive"
-  },
-  {
-    "slug": "unsorted",
-    "name": "Unsorted",
-    "path": "category=__;location=Archive"
+    "slug": "jamie-series",
+    "name": "Little House & Jamie Series",
+    "path": "#search%3D(category%3ALittle-House OR author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
   },
   {
     "slug": "youth",
-    "name": "Youth",
-    "path": "category=Youth-Practical,Youth-Stories;location=Archive"
+    "name": "Stories for Kids/Youth",
+    "path": "#category%3DOther%2CYouth-Stories%3Bsearch%3DNOT (author%3A\"John White\" OR author%3A\"Patrick Carman\" OR author%3A\"Blackwood\")"
   }
 ] }
