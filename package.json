@@ -11,14 +11,13 @@
     "build:mkdir": "mkdir -p build",
     "build:sanitize-csv:1": "tr -d '\\015' <data/books.csv >/tmp/data-books.csv",
     "build:sanitize-csv:2": "mv /tmp/data-books.csv data/books.csv",
-    "build:data-main": "csvtojson data/books.csv | jq \"$(cat data/books_schema.jq)\" > build/books.json",
-    "build:data-merge-colors": "cat ./build/books.json | jq --arg opacity \"44\" --argfile colors ./data/colors.json \"$(cat data/colors_transform.jq)\" > ./build/books.json",
+    "build:data": "csvtojson data/books.csv | jq --arg opacity \"44\" --argfile colors ./data/colors.json --argfile boxes ./data/boxes.json \"$(cat data/books_schema.jq)\" > build/books.json",
     "build:thumbnails": "cp data/thumbnails/* build",
     "build:src": "run-p build:src:*",
     "build:src:typescript": "tsc --emitDeclarationOnly && webpack",
     "build:src:assets": "cp src/*.css build && cp -r src/box_labels/qr-codes build",
     "build:src:html--index": "pug src/index.pug --out build -O ./build/books.json",
-    "build:src:html--box-labels": "pug src/box_labels.pug --out build -O ./src/box_labels/boxes.json",
+    "build:src:html--box-labels": "pug src/box_labels.pug --out build -O ./data/boxes.json",
     "test:html": "html-validate --rule no-inline-style:0 build/index.html",
     "test:unit": "jest",
     "test": "run-s prebuild:nearley test:unit",
@@ -30,7 +29,7 @@
     "rebuild:src": "run-s prebuild:nearley build:src:*",
     "search": "search/search_by_ip.sh",
     "generate-color-map": "ls data/thumbnails/ | xargs -n 1 data/average_color.sh | jq --slurp 'add' > ./data/colors.json",
-    "generate-qr-codes": "./src/box_labels/generate_qr_codes.sh 'https://books.abird.ca/' 'src/box_labels/qr-codes'"
+    "generate-qr-codes": "./src/box_labels/generate_qr_codes.sh 'https://books.abird.ca' 'src/box_labels/qr-codes'"
   },
   "repository": {
     "type": "git",
