@@ -5,11 +5,24 @@
     },
     "2": {
       "name": "Kid's/Youth Books"
+    },
+    "3": {
+      "name": "Serious"
+    },
+    "4": {
+      "name": "Stories"
     }
   },
   "boxCategories": {
     "Youth-Series": "1",
     "Youth-Stories": "2",
-    "Other": "2"
+    "Other": "2",
+    "Christian": "3",
+    "Philosophy": "3",
+    "History": "3",
+    "Engineering": "3",
+    "Practical": "3",
+    "Youth-Practical": "3",
+    "Stories": "4"
   }
 }
