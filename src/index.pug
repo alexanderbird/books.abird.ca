@@ -69,7 +69,10 @@ div.book-list
         h3.book__title= book.Title
         div.book__author= book.Author
         div.book__notes= book.Notes
-        div.book__location(title=`Location: ${book.Location}`)= locations[book.Location]
+        if book.Box
+          div.book__location(title=`Location: ${book.Location} (${book.Box.name})`)= [book.Box.id, locations[book.Location]].join(' ') 
+        else
+          div.book__location(title=`Location: ${book.Location}`)= locations[book.Location]
 
 
 //- Generate CSS with a selector for each category filter:

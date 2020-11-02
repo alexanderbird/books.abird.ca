@@ -155,5 +155,6 @@ body[data-search=''] .search:focus + .search-help,
   padding: 5px;
   margin-top: auto;
   direction: rtl;
+  color: gray;
 }
 
