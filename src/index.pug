@@ -47,6 +47,8 @@ div.filters
           code='NOT (category:Practical)'
         li
           code='"university physics" OR (category:Stories AND NOT(location:Missing) AND title:the AND NOT (notes:Alex) AND author:Patrick)'
+        li
+          code='box:2'
   div.search-summary(title='Visualization of the last valid search')
 div.book-list
   each book in books
@@ -58,6 +60,7 @@ div.book-list
         data-notes=book.Notes,
         data-author=book.Author,
         data-isbn=book.ISBN,
+        data-box=book.Box ? book.Box.id : '',
         style=`--book-color: ${book.Color};`
       )
         div.book__thumbnail
