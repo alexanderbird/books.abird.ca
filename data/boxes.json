@@ -7,7 +7,7 @@
       "name": "Kid's/Youth Books"
     },
     "3": {
-      "name": "Serious"
+      "name": "Practical"
     },
     "4": {
       "name": "Stories"
@@ -19,10 +19,10 @@
     "Other": "2",
     "Christian": "3",
     "Philosophy": "3",
-    "History": "3",
     "Engineering": "3",
     "Practical": "3",
     "Youth-Practical": "3",
+    "History": "4",
     "Stories": "4"
   }
 }
