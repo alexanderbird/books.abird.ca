@@ -14,9 +14,9 @@ let rParen: any;
 
 const lexer = moo.compile({
   quotedWord: /"[^"\n]+"/,
-  and:        /[ \t]*[Aa][Nn][Dd][ \t]*/,
-  or:         /[ \t]*[Oo][Rr][ \t]*/,
-  not:        /[ \t]*[Nn][Oo][Tt][ \t]*/,
+  and:        /[ \t]*[Aa][Nn][Dd]\b[ \t]*/,
+  or:         /[ \t]*[Oo][Rr]\b[ \t]*/,
+  not:        /[ \t]*[Nn][Oo][Tt]\b[ \t]*/,
   word:       /[^\s:)(]+/,
   _:          /[ \t]+/,
   colon:      /:/,
